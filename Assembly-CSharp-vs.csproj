@@ -98,6 +98,7 @@
      <None Include="Assets\Tiled2Unity\Tiled2Unity.export.txt" />
      <None Include="Assets\Tiled2Unity\Imported\Tutorial.tiled2unity.xml" />
      <None Include="Assets\Tiled2Unity\Imported\Final Arctic Level (Ezlo) 2.tiled2unity.xml" />
+     <None Include="Assets\Tiled2Unity\Imported\Heatstroke_Plaza.tiled2unity.xml" />
      <None Include="Assets\Tiled2Unity\License.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

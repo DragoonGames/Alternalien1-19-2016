@@ -20,6 +20,8 @@ public class SandyMovement : MonoBehaviour {
     public float timeToScale = 0.001f;
     private float sandyTimeScale = 1f;
 
+
+	public GameObject[] pistons;
     void Start()
     {
         /*anim = GetComponent<Animator>();
@@ -29,6 +31,7 @@ public class SandyMovement : MonoBehaviour {
         */
         triggered = false;
         Time.timeScale = 1;
+		pistons = GameObject.FindGameObjectsWithTag ("Piston");
     }
     IEnumerator Jump()
     {
@@ -106,13 +109,20 @@ public class SandyMovement : MonoBehaviour {
         triggered = true;
         released = false;
 
-        Time.timeScale = timeToScale;
+        //Time.timeScale = timeToScale;
+		for (int i = 0; i < pistons.Length; i++) {
+			pistons [i].GetComponent<PistonDrops> ().pistonSpeed = .0005f;
+		}
         //Put display Icon here
     }
     void Released()
     {
         triggered = false;
         released = true;
+
+		for (int i = 0; i < pistons.Length; i++) {
+			pistons [i].GetComponent<PistonDrops> ().pistonSpeed = .05f;
+		}
     }
     void OnCollisionEnter2D(Collision2D c)
     {
