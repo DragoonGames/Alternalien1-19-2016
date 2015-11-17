@@ -93,6 +93,7 @@
      <Compile Include="Assets\Tiled2Unity\Tools\ReplaceGameObjects.cs" />
      <None Include="Assets\Tiled2Unity\Imported\SecondTutorial.tiled2unity.xml" />
      <None Include="Assets\Tiled2Unity\Shaders\shaTiledMap.shader" />
+     <None Include="Assets\Tiled2Unity\Imported\Artic_Wasteland.tiled2unity.xml" />
      <None Include="Assets\Tiled2Unity\Imported\Final Arctic Level (Ezlo).tiled2unity.xml" />
      <None Include="Assets\Tiled2Unity\Tiled2Unity.export.txt" />
      <None Include="Assets\Tiled2Unity\Imported\Tutorial.tiled2unity.xml" />

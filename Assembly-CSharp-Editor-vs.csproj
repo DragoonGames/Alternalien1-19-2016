@@ -59,11 +59,15 @@
      <Compile Include="Assets\Tiled2Unity\Scripts\Editor\TiledAssetPostProcessor.cs" />
      <None Include="Assets\Tiled2Unity\Imported\SecondTutorial.tiled2unity.xml" />
      <None Include="Assets\Tiled2Unity\Shaders\shaTiledMap.shader" />
+     <None Include="Assets\Tiled2Unity\Imported\Artic_Wasteland.tiled2unity.xml" />
      <None Include="Assets\Tiled2Unity\Imported\Final Arctic Level (Ezlo).tiled2unity.xml" />
      <None Include="Assets\Tiled2Unity\Tiled2Unity.export.txt" />
      <None Include="Assets\Tiled2Unity\Imported\Tutorial.tiled2unity.xml" />
      <None Include="Assets\Tiled2Unity\Imported\Final Arctic Level (Ezlo) 2.tiled2unity.xml" />
      <None Include="Assets\Tiled2Unity\License.txt" />
+ <Reference Include="Assembly-UnityScript">
+ <HintPath>C:/Users/finke/Documents/GitHub/AlternalienNewBuild/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

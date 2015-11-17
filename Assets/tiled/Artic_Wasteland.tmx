@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="125" height="15" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="bkg_arctic_tileset" tilewidth="32" tileheight="32">
+  <image source="Artic Tiled/bkg_arctic_tileset.png" width="256" height="192"/>
+ </tileset>
+ <tileset firstgid="49" name="Giantice - 2" tilewidth="32" tileheight="32">
+  <image source="Artic Tiled/Giantice - 2.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="50" name="Card" tilewidth="32" tileheight="32">
+  <image source="Artic Tiled/Card.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="51" name="Big_Iceblock" tilewidth="32" tileheight="32">
+  <image source="Artic Tiled/Big_Iceblock.png" width="256" height="192"/>
+ </tileset>
+ <tileset firstgid="99" name="Igloo Block  Stack" tilewidth="32" tileheight="32">
+  <image source="Artic Tiled/Igloo Block  Stack.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="100" name="Lakecubes" tilewidth="32" tileheight="32">
+  <image source="Artic Tiled/Lakecubes.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="101" name="Artic_Wasteland" tilewidth="32" tileheight="32">
+  <image source="Artic Tiled/Artic_Wasteland.png" width="4000" height="480"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="125" height="15">
+  <data encoding="base64" compression="zlib">
+   eJztlk0OwiAQhdmysQtqTNR4id7Bi+j9z2Ab28SQAYb5waLzkrcogTIzX2HqnMn0GwrfDsDUVMEZ854VAGusMTk3AWOt6wexg/YfZ3uEj/ohd60pYS3mKb4Y5ofZA9I3pfh7UqqOEGutu7LEVZK5cU+fpRxvKnMqV2nmFO57/0fA9je/zo9zKPHm5FvLVfpur+VO7Tet9ajwJoi7RI5j9IxhHkuLOYZ7T8wv7p0Phzn3nC8xXKP52HNeU18Ocwnue9DC8ryawvyzn1Pz3HiXmGPerc08x53zLbZUDXNs3499T7h2TW4cu48E84FQgyfS1PXY+V4o/5JTLFrsbeb5ZP47vwCKOFE6
+  </data>
+ </layer>
+</map>
