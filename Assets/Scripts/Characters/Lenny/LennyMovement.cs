@@ -9,6 +9,7 @@ public class LennyMovement : MonoBehaviour {
     public float maxSpeed = 10f;
     public float jumpSpeed = 100f;
     private bool isActive = false;
+    private bool isVine = false;
     bool isGrounded = true;
 
     private float jumpRate = 0.25F;
@@ -94,7 +95,11 @@ public class LennyMovement : MonoBehaviour {
             float speed = (move * maxSpeed);
             //anim.SetFloat("speed", speed);
             GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
-
+            if (isVine)
+            {
+                float vertical = Input.GetAxis("Vertical");
+                GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed, vertical * maxSpeed);
+            }
             CheckDirection(speed);
             //Check for One Jump
             //Calls jump if button pressed, and is Grounded
@@ -181,6 +186,13 @@ public class LennyMovement : MonoBehaviour {
         if (c.gameObject.tag == "isCardKey")
         {
             Destroy(c.gameObject);
+        }
+    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "ClimbVine")
+        {
+            isVine = true;
         }
     }
     void SetActive()

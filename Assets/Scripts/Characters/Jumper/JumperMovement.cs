@@ -18,15 +18,18 @@ public class JumperMovement : MonoBehaviour {
     public float secondJump = 3.0F;
 
     //public Animator anim;
+    AudioSource jumperSound;
 
     void Start()
     {
         //anim = GetComponent<Animator>();
         //anim.SetBool("IsFacingLeft", isFacingLeft);
         //anim.SetBool("IsFacingRight", isFacingRight);
+        jumperSound = GetComponent<AudioSource>();
     }
     IEnumerator Jump()
     {
+        jumperSound.Play();
         if (!isGrounded && isJumpingOne) //DoubleJump
         {
             print("Jump 2");

@@ -4,7 +4,6 @@ using System.Collections;
 public class SandyMovement : MonoBehaviour {
 
     bool isFacingRight = true;
-    bool isFacingLeft = false;
 
     public float maxSpeed = 10f;
     public float jumpSpeed = 100f;
@@ -14,79 +13,78 @@ public class SandyMovement : MonoBehaviour {
     private float jumpRate = 0.25F;
     public float nextJump = 0.0F;
     public Animator anim;
+
     //Variables for powers
     private bool triggered;
     private bool released;
+    bool isUsingPower = false;
     public float timeToScale = 0.001f;
     private float sandyTimeScale = 1f;
 
-
+	//PistonDrops pistonDropStuff;
 	public GameObject[] pistons;
+    AudioSource sandyPowerSound;
+
     void Start()
     {
-        /*anim = GetComponent<Animator>();
-        anim.SetBool("IsGrounded", isGrounded);
-        anim.SetBool("IsFacingLeft", isFacingLeft);
-        anim.SetBool("IsFacingRight", isFacingRight);
-        */
+        anim = GetComponent<Animator>();
+        anim.SetBool("isGrounded", isGrounded);
+        anim.SetBool("isFacingRight", isFacingRight);
+        anim.SetBool("isUsingPower", isUsingPower);
+        sandyPowerSound = GetComponent<AudioSource>();
         triggered = false;
         Time.timeScale = 1;
+	//	pistonDropStuff = GameObject.Find("pistons").GetComponent<pistonDropStuff>();
 		pistons = GameObject.FindGameObjectsWithTag ("Piston");
+
     }
     IEnumerator Jump()
     {
         isGrounded = false;
-        //anim.SetBool("IsGrounded", isGrounded);
+        anim.SetBool("isGrounded", isGrounded);
         GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpSpeed);
 
         yield return new WaitForSeconds(nextJump);
 
         isGrounded = true;
-        //anim.SetBool("IsGrounded", isGrounded);
+        anim.SetBool("isGrounded", isGrounded);
     }
     void CheckDirection(float moveSpeed)
     {
         if (isFacingRight)
         {
-            //anim.SetBool("IsFacingRight", isFacingRight);
-            //anim.SetBool("IsFacingLeft", isFacingLeft);
+            anim.SetBool("isFacingRight", isFacingRight);
 
             if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
             {
-                isFacingLeft = true;
                 isFacingRight = false;
                 //Start of Changing Sprites
-                /*anim.SetFloat("speed", moveSpeed);
+                anim.SetFloat("speed", moveSpeed);
                 anim.SetBool("IsFacingRight", isFacingRight);
-                anim.SetBool("IsFacingLeft", isFacingLeft);
-                */
             }
         }
-        if (isFacingLeft)
+        if (!isFacingRight)
         {
-            //anim.SetBool("IsFacingLeft", isFacingLeft);
-            //anim.SetBool("IsFacingRight", isFacingRight);
+            anim.SetBool("IsFacingRight", isFacingRight);
 
             if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
             {
-                isFacingLeft = false;
                 isFacingRight = true;
                 //Start of Changing Sprites
-                /*anim.SetFloat("speed", moveSpeed);
+                anim.SetFloat("speed", moveSpeed);
                 anim.SetBool("IsFacingRight", isFacingRight);
-                anim.SetBool("IsFacingLeft", isFacingLeft);
-                */
             }
         }
     }
     void Update()
     {
+
         if (isActive)
         {
             //CheckDirection(speed);
             float move = Input.GetAxis("Horizontal");
             float speed = (move * maxSpeed);
-            //anim.SetFloat("speed", speed);
+            anim.SetFloat("speed", speed);
             GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
 
             CheckDirection(speed);
@@ -99,7 +97,13 @@ public class SandyMovement : MonoBehaviour {
             CheckDirection(speed);
             if (Input.GetKeyDown(KeyCode.F))
             {
+                isUsingPower = true;
                 Trigger();
+            }
+            if (triggered && Input.GetKeyDown(KeyCode.C))
+            {
+                isUsingPower = false;
+                Released();
             }
         }
     }
@@ -108,10 +112,12 @@ public class SandyMovement : MonoBehaviour {
         print("trigger pressed");
         triggered = true;
         released = false;
-
-        //Time.timeScale = timeToScale;
-		for (int i = 0; i < pistons.Length; i++) {
-			pistons [i].GetComponent<PistonDrops> ().pistonSpeed = .0005f;
+        sandyPowerSound.Play();
+        anim.SetBool("isUsingPower", isUsingPower);
+    //    Time.timeScale = timeToScale;
+		for (int i = 0; i < pistons.Length; i++)
+		{
+			pistons [i].GetComponent<PistonDrops> ().pistonSpeed = 0.005f;
 		}
         //Put display Icon here
     }
@@ -119,10 +125,13 @@ public class SandyMovement : MonoBehaviour {
     {
         triggered = false;
         released = true;
-
-		for (int i = 0; i < pistons.Length; i++) {
-			pistons [i].GetComponent<PistonDrops> ().pistonSpeed = .05f;
-		}
+        sandyPowerSound.Play();
+        anim.SetBool("isUsingPower", isUsingPower);
+        sandyPowerSound.Stop();
+        for (int i = 0; i < pistons.Length; i++)
+        {
+            pistons[i].GetComponent<PistonDrops>().pistonSpeed = 1.0f;
+        }
     }
     void OnCollisionEnter2D(Collision2D c)
     {

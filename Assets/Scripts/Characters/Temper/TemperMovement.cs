@@ -18,6 +18,7 @@ public class TemperMovement : MonoBehaviour
     bool fireMode = true;
     bool iceMode = false;
     bool isGrounded = true;
+    private bool isVine = false;
 
     private float jumpRate = 0.25F;
     public float nextJump = 5.0F;
@@ -185,6 +186,11 @@ public class TemperMovement : MonoBehaviour
             //anim.SetFloat("speed", speed);
             GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
 
+            if (isVine)
+            {
+                float vertical = Input.GetAxis("Vertical");
+                GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed, vertical * maxSpeed);
+            }
             if (Input.GetButtonDown("Jump") && isGrounded)
             {
                 StartCoroutine(Jump());
@@ -202,6 +208,13 @@ public class TemperMovement : MonoBehaviour
         if (c.gameObject.tag == "isCardKey")
         {
             Destroy(c.gameObject);
+        }
+    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "ClimbVine")
+        {
+            isVine = true;
         }
     }
     void SetActive()

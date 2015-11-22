@@ -14,8 +14,7 @@ public class PistonDrops : MonoBehaviour {
 	void Start () {
         goingDown = true;
         goingUp = false;
-		if (pistonSpeed < 1)
-			pistonSpeed = 1;
+		pistonSpeed = 0.005f;
 	}
 	
 	// Update is called once per frame
@@ -40,11 +39,12 @@ public class PistonDrops : MonoBehaviour {
             //Multiply it by speed
             //moveDirection *= speed;
             //moveDirection.y -= gravity * Time.time;
-			transform.Translate(new Vector3(0.0f, -pistonSpeed, 0.0f));
+            transform.Translate(new Vector3(0.0f, -pistonSpeed, 0.0f));
         }
 	}
     void OnTriggerEnter2D(Collider2D other)
     {
+		print("anything");
         print(other.gameObject.name);
         if (other.gameObject == pistonsDown)
         {
