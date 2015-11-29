@@ -7,11 +7,10 @@ public class PlayerPrefsUnlock : MonoBehaviour {
        PlayerPrefs.SetString("unlockLevel2", "unlock");
     }*/
 	
-	public int[] levels;
+	//public int[] levels;
 	public int completed;
 
-	void Start()
-	{
+	void OnTriggerEnter2D(Collider2D other){
 		completed = PlayerPrefs.GetInt("unlock");
 	}
 	void PlayerPrefsKey(string value){

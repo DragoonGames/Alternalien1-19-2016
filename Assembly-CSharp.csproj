@@ -78,6 +78,7 @@
      <Compile Include="Assets\Scripts\GameState\WinScript.cs" />
      <Compile Include="Assets\Scripts\GameState\mainGUI.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\AddAlien.cs" />
+     <Compile Include="Assets\Scripts\LevelScripts\Angry_Sun.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\BridgeMaking.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\DeathScript.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\DrawBridgeSwing.cs" />
