@@ -88,6 +88,7 @@
      <Compile Include="Assets\Scripts\LevelScripts\DropStalagmites.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\FallingBoulders.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\GeyserBridgeBuilding.cs" />
+     <Compile Include="Assets\Scripts\LevelScripts\LargeFiles.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\PistonDrops.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\SwingVine.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\TextBoxVisibility.cs" />
@@ -97,6 +98,7 @@
      <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\TiledInitialShaderProperties.cs" />
      <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\TiledMap.cs" />
      <Compile Include="Assets\Tiled2Unity\Tools\ReplaceGameObjects.cs" />
+     <Compile Include="Assets\bioClick.cs" />
      <None Include="Assets\Tiled2Unity\Imported\SecondTutorial.tiled2unity.xml" />
      <None Include="Assets\Tiled2Unity\Shaders\shaTiledMap.shader" />
      <None Include="Assets\Tiled2Unity\Imported\Artic_Wasteland.tiled2unity.xml" />
