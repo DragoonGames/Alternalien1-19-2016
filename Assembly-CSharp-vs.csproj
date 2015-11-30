@@ -46,6 +46,10 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Elevator\Elevator.cs" />
+     <Compile Include="Assets\Elevator\ElevatorTrigger.cs" />
+     <Compile Include="Assets\GUISkin\GUISample.cs" />
+     <Compile Include="Assets\Scripts\Characters\Clone\CloneMovement.cs" />
      <Compile Include="Assets\Scripts\Characters\Cloud\AddCloud.cs" />
      <Compile Include="Assets\Scripts\Characters\Cloud\CloudHit.cs" />
      <Compile Include="Assets\Scripts\Characters\Cloud\CloudKill.cs" />
@@ -61,6 +65,7 @@
      <Compile Include="Assets\Scripts\Characters\Lenny\LennyMovement.cs" />
      <Compile Include="Assets\Scripts\Characters\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\Characters\Sandy\SandyMovement.cs" />
+     <Compile Include="Assets\Scripts\Characters\Sumo\SumoMovement.cs" />
      <Compile Include="Assets\Scripts\Characters\Temper\AddTemper.cs" />
      <Compile Include="Assets\Scripts\Characters\Temper\TemperMelt.cs" />
      <Compile Include="Assets\Scripts\Characters\Temper\TemperMovement.cs" />
@@ -75,6 +80,8 @@
      <Compile Include="Assets\Scripts\GameState\SmoothFollowCSharp.cs" />
      <Compile Include="Assets\Scripts\GameState\WinScript.cs" />
      <Compile Include="Assets\Scripts\GameState\mainGUI.cs" />
+     <Compile Include="Assets\Scripts\LevelScripts\AddAlien.cs" />
+     <Compile Include="Assets\Scripts\LevelScripts\Angry_Sun.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\BridgeMaking.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\DeathScript.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\DrawBridgeSwing.cs" />
@@ -85,7 +92,6 @@
      <Compile Include="Assets\Scripts\LevelScripts\SwingVine.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\TextBoxVisibility.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\TextVisibility.cs" />
-     <Compile Include="Assets\Scripts\LevelScripts\pistonMovement.cs" />
      <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\SortingLayerExposed.cs" />
      <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\TileAnimator.cs" />
      <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\TiledInitialShaderProperties.cs" />
