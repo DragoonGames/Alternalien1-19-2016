@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class CloneMovement : MonoBehaviour {
+
     bool isFacingRight = true;
     bool isFacingLeft = false;
 
@@ -11,12 +12,18 @@ public class CloneMovement : MonoBehaviour {
     bool isGrounded = true;
 
     private float jumpRate = 0.25F;
-    public float nextJump = 0.0F;
+    public float nextJump = 0.5F;
 
     public Animator anim;
     public Transform[] itemTransform;
     public Sprite CloneCopyCat;
     public Sprite OriginalClone;
+    private SpriteRenderer spriteRenderer;
+
+    private BoxCollider2D originalCollider;
+    private Vector3 storedColliderSize;
+    private Vector2 storedColliderOffset;
+
     public float inRange;
     bool isUsingPower = false;
     private bool triggered;
@@ -29,8 +36,13 @@ public class CloneMovement : MonoBehaviour {
         anim.SetBool("isGrounded", isGrounded);
         anim.SetBool("isFacingRight", isFacingRight);
         anim.SetBool("isUsingPower", isUsingPower);
-        inRange = 10.0f;
+        inRange = 5.0f;
         triggered = false;
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalCollider = gameObject.GetComponent<BoxCollider2D>();
+        storedColliderSize = GetComponent<BoxCollider2D>().size;
+        storedColliderOffset = GetComponent<BoxCollider2D>().offset;
         OriginalClone = transform.GetComponent<SpriteRenderer>().sprite;
     }
     IEnumerator Jump()
@@ -92,19 +104,34 @@ public class CloneMovement : MonoBehaviour {
                 StartCoroutine(Jump());
             }
             CheckDirection(speed);
-            if (!released && Input.GetKeyDown(KeyCode.C))
+            if (triggered && Input.GetKeyDown(KeyCode.C))
             {
                 isUsingPower = false;
                 Released();
             }
-            for (int i = 0; i < itemTransform.Length; i++)
+            /*if (Input.GetKeyDown(KeyCode.F) && !triggered)
             {
-                if (Vector3.Distance(itemTransform[i].position, transform.position) < inRange)
+                isUsingPower = true;
+                anim.SetBool("isUsingPower", isUsingPower);
+                triggered = true;
+            }*/
+            if (!triggered)
+            {
+                for (int i = 0; i < itemTransform.Length; i++)
                 {
-                    if (!triggered && Input.GetKeyDown(KeyCode.F))
+                    if (Vector3.Distance(itemTransform[i].position, transform.position) < inRange)
                     {
-                        index = i;
-                        Trigger();
+                        //print("In Range");
+                        if (Input.GetKeyDown(KeyCode.F))
+                        {
+                            //isUsingPower = true;
+                            //anim.SetBool("isUsingPower", isUsingPower);
+                            CloneCopyCat = itemTransform[index].GetComponent<SpriteRenderer>().sprite;
+                            
+                            //Destroy(originalCollider);
+                            index = i;
+                            Trigger();
+                        }
                     }
                 }
             }
@@ -114,19 +141,29 @@ public class CloneMovement : MonoBehaviour {
     {
         triggered = true;
         released = false;
-        isUsingPower = true;
-        anim.SetBool("isUsingPower", isUsingPower);
+        //isUsingPower = true;
+        //anim.SetBool("isUsingPower", isUsingPower);
+        anim.enabled = false;
+        print("Anim" + anim.enabled);
+
         //Put display Icon here
-        CloneCopyCat = itemTransform[index].GetComponent<SpriteRenderer>().sprite;
-        gameObject.GetComponent<SpriteRenderer>().sprite = CloneCopyCat;
+        spriteRenderer.sprite = CloneCopyCat;
+        originalCollider.size = new Vector3(1, 1, 0);
+        originalCollider.offset = new Vector2(0, 0);
+        //gameObject.GetComponent<BoxCollider2D>() = itemTransform[index].GetComponent<Collider2D>();
+        //gameObject.AddComponent<BoxCollider2D>(clonedCollider);
     }
     void Released()
     {
         triggered = false;
         released = true;
 
+        anim.enabled = true;
         anim.SetBool("isUsingPower", isUsingPower);
         gameObject.GetComponent<SpriteRenderer>().sprite = OriginalClone;
+
+        originalCollider.size = storedColliderSize;
+        originalCollider.offset = storedColliderOffset;
     }
     void OnCollisionEnter2D(Collision2D c)
     {

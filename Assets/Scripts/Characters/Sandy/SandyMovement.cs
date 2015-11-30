@@ -23,6 +23,7 @@ public class SandyMovement : MonoBehaviour {
 
 	//PistonDrops pistonDropStuff;
 	public GameObject[] pistons;
+    float[] pistonSavedSpeeds;
     AudioSource sandyPowerSound;
 
     void Start()
@@ -34,9 +35,7 @@ public class SandyMovement : MonoBehaviour {
         sandyPowerSound = GetComponent<AudioSource>();
         triggered = false;
         Time.timeScale = 1;
-	//	pistonDropStuff = GameObject.Find("pistons").GetComponent<pistonDropStuff>();
 		pistons = GameObject.FindGameObjectsWithTag ("Piston");
-
     }
     IEnumerator Jump()
     {
@@ -51,28 +50,24 @@ public class SandyMovement : MonoBehaviour {
     }
     void CheckDirection(float moveSpeed)
     {
-        if (isFacingRight)
-        {
-            anim.SetBool("isFacingRight", isFacingRight);
-
-            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
-            {
-                isFacingRight = false;
-                //Start of Changing Sprites
-                anim.SetFloat("speed", moveSpeed);
-                anim.SetBool("IsFacingRight", isFacingRight);
-            }
-        }
         if (!isFacingRight)
         {
-            anim.SetBool("IsFacingRight", isFacingRight);
-
             if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
             {
                 isFacingRight = true;
                 //Start of Changing Sprites
                 anim.SetFloat("speed", moveSpeed);
-                anim.SetBool("IsFacingRight", isFacingRight);
+                anim.SetBool("isFacingRight", isFacingRight);
+            }
+        }
+        if (isFacingRight)
+        {
+            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+            {
+                isFacingRight = false;
+                //Start of Changing Sprites
+                anim.SetFloat("speed", moveSpeed);
+                anim.SetBool("isFacingRight", isFacingRight);
             }
         }
     }
@@ -98,6 +93,10 @@ public class SandyMovement : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.F))
             {
                 isUsingPower = true;
+                for (int i = 0; i < pistons.Length; i++)
+                {
+                    pistonSavedSpeeds[i] = pistons[i].GetComponent<PistonDrops>().pistonSpeed;
+                }
                 Trigger();
             }
             if (triggered && Input.GetKeyDown(KeyCode.C))
