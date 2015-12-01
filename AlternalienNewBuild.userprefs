@@ -1,8 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\bioClick.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\..\Downloads\AlternalienNewBuildCopy\AlternalienNewBuild-master\Assets\Scripts\LevelScripts\bioClick.cs">
     <Files>
-      <File FileName="Assets\bioClick.cs" Line="22" Column="2" />
+      <File FileName="..\..\..\Downloads\AlternalienNewBuildCopy\AlternalienNewBuild-master\Assets\Scripts\LevelScripts\bioClick.cs" Line="7" Column="21" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class bioClick : MonoBehaviour {
-
+	/*
 	public Texture image;
 	private Texture _image;
 
@@ -23,4 +23,5 @@ public class bioClick : MonoBehaviour {
 	void OnGUI(){
 		_image = GUI.DrawTexture(new Rect (0, 0, 60, 60), image, ScaleMode.ScaleToFit);
 	}
+	*/
 }
