@@ -1,8 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="..\..\..\Downloads\AlternalienNewBuildCopy\AlternalienNewBuild-master\Assets\Scripts\LevelScripts\bioClick.cs">
     <Files>
-      <File FileName="..\..\..\Downloads\AlternalienNewBuildCopy\AlternalienNewBuild-master\Assets\Scripts\LevelScripts\bioClick.cs" Line="7" Column="21" />
+      <File FileName="..\..\..\Downloads\AlternalienNewBuildCopy\AlternalienNewBuild-master\Assets\Scripts\LevelScripts\bioClick.cs" Line="14" Column="1" />
+      <File FileName="Assets\Tiled2Unity\Scripts\Editor\TiledAssetPostProcessor.cs" Line="164" Column="1" />
+      <File FileName="Assets\Scripts\LevelScripts\bioClick.cs" Line="27" Column="7" />
+      <File FileName="Assets\Scripts\LevelScripts\TextBoxVisibility.cs" Line="10" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
