@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="20" tilewidth="32" tileheight="32" nextobjectid="50">
+ <tileset firstgid="1" name="bkg_arctic_tileset" tilewidth="32" tileheight="32">
+  <image source="../Downloads/bkg_arctic_tileset.png" width="256" height="192"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="50" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzdVwEKgzAM7DZxmwz2/99OwUIJSZo0lyI7OJBaL732IrqVUrY/YQ8PwxyLBketFr0vPW/10eK2823k3ak9ihEfnIZnPAOtD2mfe3s6c70SuPPQsitpRGHNqrSn6FxF3ylUy7MGdH9E9EafzezzmVrVh5Q/mlsun2gfWh6lPrKcB9f3UuZfERMBIHLF6fWI9kt9eL9XrPrZXtDnIelne5nlI7vWVXysO5+AOpWfgJamT69bHB6+JxF1NKyGOSNZbz1k+6i1lg6POR4v1IOlxkI06hjqf/IK/AGO/gse
+  </data>
+ </layer>
+ <objectgroup name="Collision">
+  <object id="4" x="-1" y="1" width="32" height="639"/>
+  <object id="5" x="31" y="0" width="129" height="31"/>
+  <object id="6" x="81" y="128" width="190" height="30"/>
+  <object id="7" x="31" y="289" width="79" height="30"/>
+  <object id="8" x="31" y="512" width="80" height="30"/>
+  <object id="9" x="96" y="384" width="127" height="31"/>
+  <object id="10" x="238" y="290" width="129" height="28"/>
+  <object id="11" x="417" y="320" width="127" height="32"/>
+  <object id="12" x="512" y="96" width="31" height="224"/>
+  <object id="14" x="33" y="609" width="1570" height="30"/>
+  <object id="15" x="400" y="64" width="350" height="32"/>
+  <object id="16" x="608" y="351" width="319" height="33"/>
+  <object id="17" x="737" y="386" width="223" height="60"/>
+  <object id="18" x="960" y="417" width="32" height="30"/>
+  <object id="19" x="737" y="446" width="63" height="98"/>
+  <object id="20" x="832" y="449" width="63" height="94"/>
+  <object id="22" x="607" y="192" width="289" height="31"/>
+  <object id="23" x="640" y="226" width="31" height="28"/>
+  <object id="24" x="705" y="95" width="30" height="33"/>
+  <object id="25" x="160" y="-1.33333" width="1409" height="33.3333"/>
+  <object id="26" x="1121" y="192" width="29" height="127"/>
+  <object id="27" x="1151" y="287" width="194" height="32"/>
+  <object id="29" x="1569" y="1" width="35" height="607"/>
+  <object id="30" x="1393" y="289" width="176" height="31"/>
+  <object id="31" x="1217" y="192" width="32" height="32"/>
+  <object id="32" x="1072" y="162" width="317" height="29"/>
+  <object id="36" x="1086" y="481" width="34" height="128"/>
+  <object id="40" x="1086" y="481">
+   <polygon points="0,0 -128,128 0,128 2,0"/>
+  </object>
+  <object id="41" x="927" y="350">
+   <polygon points="0,0 95,97 -1,96 0,0"/>
+  </object>
+  <object id="42" x="608" y="320">
+   <polygon points="0,0 30,30 1,30 0,0"/>
+  </object>
+  <object id="43" x="576" y="544">
+   <polygon points="0,0 2,63 64,64 1,0"/>
+  </object>
+  <object id="44" x="319" y="545">
+   <polygon points="0,0 1,63 -63,63 0,0"/>
+  </object>
+ </objectgroup>
+</map>
