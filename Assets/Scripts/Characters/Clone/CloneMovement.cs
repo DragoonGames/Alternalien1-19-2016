@@ -19,10 +19,12 @@ public class CloneMovement : MonoBehaviour {
     public Sprite CloneCopyCat;
     public Sprite OriginalClone;
     private SpriteRenderer spriteRenderer;
-
+    AudioSource myAudioSource;
     private BoxCollider2D originalCollider;
     private Vector3 storedColliderSize;
     private Vector2 storedColliderOffset;
+    public AudioClip keycardPickup;
+    Rigidbody2D myRigid;
 
     public float inRange;
     bool isUsingPower = false;
@@ -44,6 +46,8 @@ public class CloneMovement : MonoBehaviour {
         storedColliderSize = GetComponent<BoxCollider2D>().size;
         storedColliderOffset = GetComponent<BoxCollider2D>().offset;
         OriginalClone = transform.GetComponent<SpriteRenderer>().sprite;
+        myAudioSource = GetComponent<AudioSource>();
+        myRigid = GetComponent<Rigidbody2D>();
     }
     IEnumerator Jump()
     {
@@ -169,15 +173,21 @@ public class CloneMovement : MonoBehaviour {
     {
         if (c.gameObject.tag == "isCardKey")
         {
+            myAudioSource.Stop();
+            myAudioSource.clip = keycardPickup;
+            myAudioSource.Play();
             Destroy(c.gameObject);
         }
     }
     void SetActive()
     {
         isActive = true;
+        myRigid.constraints = RigidbodyConstraints2D.None;
+        myRigid.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
     void SetInactive()
     {
         isActive = false;
+        myRigid.constraints = RigidbodyConstraints2D.FreezePositionX;
     }
 }

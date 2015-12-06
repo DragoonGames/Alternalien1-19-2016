@@ -9,12 +9,24 @@ public class PistonDrops : MonoBehaviour {
 	public float pistonSpeed;
     bool goingUp;
     bool goingDown;
-
+    Random pistonRandomSpeed;
+    public bool isRandom;
 	// Use this for initialization
 	void Start () {
         goingDown = true;
         goingUp = false;
-		pistonSpeed = 0.005f;
+        if (!isRandom)
+        {
+            /*if (pistonSpeed < 10.0f || 0 < pistonSpeed)
+            {
+                pistonSpeed = 1;
+            }
+            */
+        }
+        if (isRandom)
+        {
+            pistonSpeed = Random.Range(3.0f, 5.0f);
+        }
 	}
 	
 	// Update is called once per frame
@@ -44,17 +56,13 @@ public class PistonDrops : MonoBehaviour {
 	}
     void OnTriggerEnter2D(Collider2D other)
     {
-		print("anything");
-        print(other.gameObject.name);
         if (other.gameObject == pistonsDown)
         {
-            print(other.gameObject.name);
             goingDown = true;
             goingUp = false;
         }
         if (other.gameObject == pistonsUp)
         {
-            print(other.gameObject.name);
             goingUp = true;
             goingDown = false;
         }

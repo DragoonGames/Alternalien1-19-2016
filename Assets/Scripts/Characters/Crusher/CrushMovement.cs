@@ -17,14 +17,18 @@ public class CrushMovement : MonoBehaviour {
 	public float nextPunch = 0.0F;
 
     public Animator anim;
-    AudioSource crushPunchSound;
+    AudioClip crushPunchSound;
+    AudioSource myAudioSource;
+    public AudioClip keycardPickup;
+    Rigidbody2D myRigid;
 
-	void Start(){
+    void Start(){
         anim = GetComponent<Animator>();
         anim.SetBool("IsGrounded", isGrounded);
         anim.SetBool("IsFacingLeft", isFacingLeft);
         anim.SetBool("IsFacingRight", isFacingRight);
-        crushPunchSound = GetComponent<AudioSource>();
+        myAudioSource = GetComponent<AudioSource>();
+        myRigid = GetComponent<Rigidbody2D>();
     }
 	IEnumerator Jump()
 	{
@@ -99,7 +103,9 @@ public class CrushMovement : MonoBehaviour {
 	{
 		isPunching = true;
         anim.SetBool("IsPunching", isPunching);
-        crushPunchSound.Play();
+        myAudioSource.Stop();
+        myAudioSource.clip = keycardPickup;
+        myAudioSource.Play();
 
         yield return new WaitForSeconds (nextPunch);
 		isPunching = false;
@@ -136,9 +142,12 @@ public class CrushMovement : MonoBehaviour {
     void SetActive()
 	{
 		isActive = true;
-	}
+        myRigid.constraints = RigidbodyConstraints2D.None;
+        myRigid.constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
 	void SetInactive()
 	{
 		isActive = false;
-	}
+        myRigid.constraints = RigidbodyConstraints2D.FreezePositionX;
+    }
 }

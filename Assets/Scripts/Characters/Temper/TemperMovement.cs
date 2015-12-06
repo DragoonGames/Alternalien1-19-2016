@@ -8,7 +8,6 @@ public class TemperMovement : MonoBehaviour
     public float jumpSpeed = 100f;
     private bool isActive = false;
 
-    //public Transform fireballPrefab;
     public Rigidbody2D fireballRigid;
     public Rigidbody2D iceballRigid;
     public float shotPower = 80;
@@ -27,10 +26,20 @@ public class TemperMovement : MonoBehaviour
     public Sprite leftIceSprite, rightIceSprite;
 
     Rigidbody2D temperRigid;
+    Rigidbody2D myRigid;
+
+    AudioSource myAudioSource;
+    public AudioClip fireballSound;
+    public AudioClip iceballSound;
+    public AudioClip switchToIceSound;
+    public AudioClip switchToFireSound;
+    public AudioClip keycardPickup;
 
     void Start()
     {
         temperRigid = GetComponent<Rigidbody2D>();
+        myAudioSource = GetComponent<AudioSource>();
+        myRigid = GetComponent<Rigidbody2D>();
     }
     IEnumerator Jump()
     {
@@ -60,14 +69,20 @@ public class TemperMovement : MonoBehaviour
             if (isFacingRight)
             {
                 Rigidbody2D fireClone;
+                myAudioSource.Stop();
+                myAudioSource.clip = fireballSound;
+                myAudioSource.Play();
                 fireClone = Instantiate(fireballRigid, transform.position, transform.rotation) as Rigidbody2D;
                 fireClone.velocity = transform.TransformDirection(Vector3.right * 120 + Vector3.up * 35);
-
+                
                 Destroy(fireClone.gameObject, 15.0f);
             }
             else if (isFacingLeft)
             {
                 Rigidbody2D fireClone;
+                myAudioSource.Stop();
+                myAudioSource.clip = fireballSound;
+                myAudioSource.Play();
                 fireClone = Instantiate(fireballRigid, transform.position, transform.rotation) as Rigidbody2D;
                 fireClone.velocity = transform.TransformDirection(Vector3.left * 120 + Vector3.up * 35);
 
@@ -79,6 +94,9 @@ public class TemperMovement : MonoBehaviour
             if (isFacingRight)
             {
                 Rigidbody2D iceClone;
+                myAudioSource.Stop();
+                myAudioSource.clip = iceballSound;
+                myAudioSource.Play();
                 iceClone = Instantiate(iceballRigid, transform.position, transform.rotation) as Rigidbody2D;
                 iceClone.velocity = transform.TransformDirection(Vector3.right * 120 + Vector3.up * 35);
 
@@ -87,6 +105,9 @@ public class TemperMovement : MonoBehaviour
             else if (isFacingLeft)
             {
                 Rigidbody2D iceClone;
+                myAudioSource.Stop();
+                myAudioSource.clip = iceballSound;
+                myAudioSource.Play();
                 iceClone = Instantiate(iceballRigid, transform.position, transform.rotation) as Rigidbody2D;
                 iceClone.velocity = transform.TransformDirection(Vector3.left * 120 + Vector3.up * 35);
 
@@ -150,6 +171,9 @@ public class TemperMovement : MonoBehaviour
         {
             if (fireMode)
             {
+                myAudioSource.Stop();
+                myAudioSource.clip = switchToIceSound;
+                myAudioSource.Play();
                 fireMode = false;
                 iceMode = true;
                 if (isFacingLeft)
@@ -163,6 +187,9 @@ public class TemperMovement : MonoBehaviour
             }
             else if (iceMode)
             {
+                myAudioSource.Stop();
+                myAudioSource.clip = switchToFireSound;
+                myAudioSource.Play();
                 iceMode = false;
                 fireMode = true;
                 if (isFacingLeft)
@@ -207,6 +234,9 @@ public class TemperMovement : MonoBehaviour
     {
         if (c.gameObject.tag == "isCardKey")
         {
+            myAudioSource.Stop();
+            myAudioSource.clip = keycardPickup;
+            myAudioSource.Play();
             Destroy(c.gameObject);
         }
     }
@@ -220,9 +250,12 @@ public class TemperMovement : MonoBehaviour
     void SetActive()
     {
         isActive = true;
+        myRigid.constraints = RigidbodyConstraints2D.None;
+        myRigid.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
     void SetInactive()
     {
         isActive = false;
+        myRigid.constraints = RigidbodyConstraints2D.FreezePositionX;
     }
 }
