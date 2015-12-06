@@ -86,6 +86,7 @@
      <Compile Include="Assets\Scripts\LevelScripts\DesertDrawBridge.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\DrawBridgeSwing.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\DropStalagmites.cs" />
+     <Compile Include="Assets\Scripts\LevelScripts\ExitIntroScene.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\FallingBoulders.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\GeyserBridgeBuilding.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\LargeFiles.cs" />
@@ -111,11 +112,17 @@
      <None Include="Assets\Tiled2Unity\Imported\Artic Level design 1.tiled2unity.xml" />
      <None Include="Assets\Tiled2Unity\Imported\Heatstroke_Plaza.tiled2unity.xml" />
      <None Include="Assets\Tiled2Unity\License.txt" />
+ <Reference Include="UnityEngine.Advertisements">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Analytics">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Cecil">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/Mono.Cecil.dll</HintPath>
