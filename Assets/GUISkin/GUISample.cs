@@ -25,7 +25,7 @@ public class GUISample : MonoBehaviour
 				Application.LoadLevel(2);
 		}
 		if (gameObject.tag == "Exit") {
-			if (GUI.Button (new Rect ((Screen.width / 2) - (buttonW / 4), (Screen.height / 3) + Screen.height / 2, buttonW/2, buttonH), text))
+			if (GUI.Button (new Rect ((Screen.width / 2) - (buttonW / 4), (Screen.height / 3) + Screen.height / 2, buttonW/2, buttonH/2), text))
 				Application.Quit();
 
 		}

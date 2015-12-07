@@ -25,6 +25,8 @@ public class LennyMovement : MonoBehaviour {
     private bool released;
     int index = 0;
 
+    Rigidbody2D myRigid;
+
     void Start()
     {
         /*anim = GetComponent<Animator>();
@@ -34,6 +36,7 @@ public class LennyMovement : MonoBehaviour {
         */
         inRange = 50.0f;
         triggered = false;
+        myRigid = GetComponent<Rigidbody2D>();
     }
     IEnumerator Jump()
     {
@@ -198,10 +201,14 @@ public class LennyMovement : MonoBehaviour {
     void SetActive()
     {
         isActive = true;
+        myRigid.constraints = RigidbodyConstraints2D.None;
+        myRigid.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
     void SetInactive()
     {
         isActive = false;
+        //myRigid.constraints = RigidbodyConstraints2D.FreezeAll;
+        myRigid.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
     void MoveChild()
     {

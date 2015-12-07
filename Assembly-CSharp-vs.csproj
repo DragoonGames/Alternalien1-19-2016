@@ -70,12 +70,10 @@
      <Compile Include="Assets\Scripts\Characters\Temper\TemperMelt.cs" />
      <Compile Include="Assets\Scripts\Characters\Temper\TemperMovement.cs" />
      <Compile Include="Assets\Scripts\GameState\CameraTracker.cs" />
-     <Compile Include="Assets\Scripts\GameState\ClearPrefs.cs" />
      <Compile Include="Assets\Scripts\GameState\ControlScript.cs" />
+     <Compile Include="Assets\Scripts\GameState\ExitButton.cs" />
      <Compile Include="Assets\Scripts\GameState\ExitScript.cs" />
-     <Compile Include="Assets\Scripts\GameState\LevelUnlock.cs" />
      <Compile Include="Assets\Scripts\GameState\PauseScript.cs" />
-     <Compile Include="Assets\Scripts\GameState\PlayerPrefsUnlock.cs" />
      <Compile Include="Assets\Scripts\GameState\SceneLoader.cs" />
      <Compile Include="Assets\Scripts\GameState\SmoothFollowCSharp.cs" />
      <Compile Include="Assets\Scripts\GameState\WinScript.cs" />
@@ -83,9 +81,12 @@
      <Compile Include="Assets\Scripts\LevelScripts\AddAlien.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\Angry_Sun.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\BridgeMaking.cs" />
+     <Compile Include="Assets\Scripts\LevelScripts\Credits.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\DeathScript.cs" />
+     <Compile Include="Assets\Scripts\LevelScripts\DesertDrawBridge.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\DrawBridgeSwing.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\DropStalagmites.cs" />
+     <Compile Include="Assets\Scripts\LevelScripts\ExitIntroScene.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\FallingBoulders.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\GeyserBridgeBuilding.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\LargeFiles.cs" />
@@ -94,6 +95,8 @@
      <Compile Include="Assets\Scripts\LevelScripts\TextBoxVisibility.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\TextVisibility.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\bioClick.cs" />
+     <Compile Include="Assets\Scripts\LevelScripts\climbVine.cs" />
+     <Compile Include="Assets\Scripts\LevelScripts\unfairMarioSpikes.cs" />
      <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\SortingLayerExposed.cs" />
      <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\TileAnimator.cs" />
      <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\TiledInitialShaderProperties.cs" />
@@ -106,6 +109,7 @@
      <None Include="Assets\Tiled2Unity\Tiled2Unity.export.txt" />
      <None Include="Assets\Tiled2Unity\Imported\Tutorial.tiled2unity.xml" />
      <None Include="Assets\Tiled2Unity\Imported\Final Arctic Level (Ezlo) 2.tiled2unity.xml" />
+     <None Include="Assets\Tiled2Unity\Imported\Artic Level design 1.tiled2unity.xml" />
      <None Include="Assets\Tiled2Unity\Imported\Heatstroke_Plaza.tiled2unity.xml" />
      <None Include="Assets\Tiled2Unity\License.txt" />
  <Reference Include="UnityEngine.UI">

@@ -17,7 +17,7 @@ public class CrushMovement : MonoBehaviour {
 	public float nextPunch = 0.0F;
 
     public Animator anim;
-    AudioClip crushPunchSound;
+    public AudioClip crushPunchSound;
     AudioSource myAudioSource;
     public AudioClip keycardPickup;
     Rigidbody2D myRigid;
@@ -104,7 +104,7 @@ public class CrushMovement : MonoBehaviour {
 		isPunching = true;
         anim.SetBool("IsPunching", isPunching);
         myAudioSource.Stop();
-        myAudioSource.clip = keycardPickup;
+        myAudioSource.clip = crushPunchSound;
         myAudioSource.Play();
 
         yield return new WaitForSeconds (nextPunch);
@@ -129,6 +129,9 @@ public class CrushMovement : MonoBehaviour {
         if (c.gameObject.tag == "isCardKey")
         {
             Destroy(c.gameObject);
+            myAudioSource.Stop();
+            myAudioSource.clip = keycardPickup;
+            myAudioSource.Play();
         }
         if (c.gameObject.tag == "isBreakable")
         {
@@ -148,6 +151,6 @@ public class CrushMovement : MonoBehaviour {
 	void SetInactive()
 	{
 		isActive = false;
-        myRigid.constraints = RigidbodyConstraints2D.FreezePositionX;
+        myRigid.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 }

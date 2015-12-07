@@ -25,6 +25,7 @@ public class SandyMovement : MonoBehaviour {
 	public GameObject[] pistons;
     float[] pistonSavedSpeeds;
     AudioSource sandyPowerSound;
+    Rigidbody2D myRigid;
 
     void Start()
     {
@@ -36,6 +37,7 @@ public class SandyMovement : MonoBehaviour {
         triggered = false;
         Time.timeScale = 1;
 		pistons = GameObject.FindGameObjectsWithTag ("Piston");
+        myRigid = GetComponent<Rigidbody2D>();
     }
     IEnumerator Jump()
     {
@@ -142,9 +144,12 @@ public class SandyMovement : MonoBehaviour {
     void SetActive()
     {
         isActive = true;
+        myRigid.constraints = RigidbodyConstraints2D.None;
+        myRigid.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
     void SetInactive()
     {
         isActive = false;
+        myRigid.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 }

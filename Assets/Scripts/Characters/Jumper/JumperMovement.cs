@@ -19,6 +19,8 @@ public class JumperMovement : MonoBehaviour {
 
     //public Animator anim;
     AudioSource jumperSound;
+    public AudioClip keycardPickup;
+    Rigidbody2D myRigid;
 
     void Start()
     {
@@ -26,6 +28,7 @@ public class JumperMovement : MonoBehaviour {
         //anim.SetBool("IsFacingLeft", isFacingLeft);
         //anim.SetBool("IsFacingRight", isFacingRight);
         jumperSound = GetComponent<AudioSource>();
+        myRigid = GetComponent<Rigidbody2D>();
     }
     IEnumerator Jump()
     {
@@ -113,14 +116,20 @@ public class JumperMovement : MonoBehaviour {
         if (c.gameObject.tag == "isCardKey")
         {
             Destroy(c.gameObject);
+            jumperSound.Stop();
+            jumperSound.clip = keycardPickup;
+            jumperSound.Play();
         }
     }
     void SetActive()
     {
         isActive = true;
+        myRigid.constraints = RigidbodyConstraints2D.None;
+        myRigid.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
     void SetInactive()
     {
         isActive = false;
+        myRigid.constraints = RigidbodyConstraints2D.FreezePositionX;
     }
 }
