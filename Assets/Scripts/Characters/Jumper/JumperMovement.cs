@@ -18,21 +18,27 @@ public class JumperMovement : MonoBehaviour {
     public float secondJump = 3.0F;
 
     //public Animator anim;
-    AudioSource jumperSound;
+    AudioSource myAudioSource;
+    //public AudioClip sandyPower;
+    public AudioClip jumpersound;
     public AudioClip keycardPickup;
     Rigidbody2D myRigid;
 
+	public Animator anim;
+
+
     void Start()
     {
-        //anim = GetComponent<Animator>();
-        //anim.SetBool("IsFacingLeft", isFacingLeft);
-        //anim.SetBool("IsFacingRight", isFacingRight);
-        jumperSound = GetComponent<AudioSource>();
+        anim = GetComponent<Animator>();
+        anim.SetBool("isFacingRight", isFacingRight);
+        myAudioSource = GetComponent<AudioSource>();
         myRigid = GetComponent<Rigidbody2D>();
     }
     IEnumerator Jump()
     {
-        jumperSound.Play();
+        myAudioSource.Stop();
+        myAudioSource.clip = jumpersound;
+        myAudioSource.Play();
         if (!isGrounded && isJumpingOne) //DoubleJump
         {
             print("Jump 2");
@@ -60,33 +66,27 @@ public class JumperMovement : MonoBehaviour {
     {
         if (isFacingRight)
         {
-            //anim.SetBool("IsFacingRight", isFacingRight);
-            //anim.SetBool("IsFacingLeft", isFacingLeft);
+            anim.SetBool("isFacingRight", isFacingRight);
 
             if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
             {
-                isFacingLeft = true;
                 isFacingRight = false;
                 //Start of Changing Sprites
-                //anim.SetFloat("speed", moveSpeed);
-                //anim.SetBool("IsFacingRight", isFacingRight);
-                //anim.SetBool("IsFacingLeft", isFacingLeft);
+                anim.SetFloat("speed", moveSpeed);
+                anim.SetBool("isFacingRight", isFacingRight);
             }
 
         }
-        if (isFacingLeft)
+        if (!isFacingRight)
         {
-            //anim.SetBool("IsFacingLeft", isFacingLeft);
-            //anim.SetBool("IsFacingRight", isFacingRight);
+            anim.SetBool("isFacingRight", isFacingRight);
 
             if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
             {
-                isFacingLeft = false;
                 isFacingRight = true;
                 //Start of Changing Sprites
-                //anim.SetFloat("speed", moveSpeed);
-                //anim.SetBool("IsFacingRight", isFacingRight);
-                //anim.SetBool("IsFacingLeft", isFacingLeft);
+                anim.SetFloat("speed", moveSpeed);
+                anim.SetBool("isFacingRight", isFacingRight);
             }
         }
     }
@@ -97,7 +97,7 @@ public class JumperMovement : MonoBehaviour {
             //CheckDirection(speed);
             float move = Input.GetAxis("Horizontal");
             float speed = (move * maxSpeed);
-            //anim.SetFloat("speed", speed);
+            anim.SetFloat("speed", speed);
             GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
 
             CheckDirection(speed);
@@ -115,10 +115,10 @@ public class JumperMovement : MonoBehaviour {
     {
         if (c.gameObject.tag == "isCardKey")
         {
+            myAudioSource.Stop();
+            myAudioSource.clip = keycardPickup;
+            myAudioSource.Play();
             Destroy(c.gameObject);
-            jumperSound.Stop();
-            jumperSound.clip = keycardPickup;
-            jumperSound.Play();
         }
     }
     void SetActive()
@@ -130,6 +130,6 @@ public class JumperMovement : MonoBehaviour {
     void SetInactive()
     {
         isActive = false;
-        myRigid.constraints = RigidbodyConstraints2D.FreezePositionX;
+        myRigid.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 }

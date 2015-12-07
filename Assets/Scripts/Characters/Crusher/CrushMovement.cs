@@ -151,6 +151,7 @@ public class CrushMovement : MonoBehaviour {
 	void SetInactive()
 	{
 		isActive = false;
-        myRigid.constraints = RigidbodyConstraints2D.FreezeAll;
+        myRigid.constraints = RigidbodyConstraints2D.FreezeRotation;
+        myRigid.constraints = RigidbodyConstraints2D.FreezePositionX;
     }
 }

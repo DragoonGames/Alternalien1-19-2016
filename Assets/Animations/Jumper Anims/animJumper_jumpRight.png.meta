@@ -1,10 +1,12 @@
 fileFormatVersion: 2
-guid: 58d60f4c362ad9d4abb9de257360dafb
+guid: 4296ea461f256c14a9476de4f5d9e8fc
+timeCreated: 1449498890
+licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
-    21300000: animJumper_jumpLeft_0
-    21300002: animJumper_jumpLeft_1
-    21300004: animJumper_jumpLeft_2
+    21300000: animJumper_jumpRight_0
+    21300002: animJumper_jumpRight_1
+    21300004: animJumper_jumpRight_2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -27,8 +29,8 @@ TextureImporter:
   cubemapConvolutionSteps: 8
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -1
-  maxTextureSize: 1024
+  textureFormat: -3
+  maxTextureSize: 2048
   textureSettings:
     filterMode: 0
     aniso: 16
@@ -38,7 +40,6 @@ TextureImporter:
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
-  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
@@ -51,7 +52,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: animJumper_jumpLeft_0
+    - name: animJumper_jumpRight_0
       rect:
         serializedVersion: 2
         x: 0
@@ -61,7 +62,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: animJumper_jumpLeft_1
+    - name: animJumper_jumpRight_1
       rect:
         serializedVersion: 2
         x: 32
@@ -71,7 +72,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: animJumper_jumpLeft_2
+    - name: animJumper_jumpRight_2
       rect:
         serializedVersion: 2
         x: 64
