@@ -256,6 +256,6 @@ public class TemperMovement : MonoBehaviour
     void SetInactive()
     {
         isActive = false;
-        myRigid.constraints = RigidbodyConstraints2D.FreezePositionX;
+        //myRigid.constraints = RigidbodyConstraints2D.FreezePositionX;
     }
 }
