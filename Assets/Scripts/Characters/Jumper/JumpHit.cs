@@ -2,7 +2,11 @@
 using System.Collections;
 
 public class JumpHit : MonoBehaviour {
-	void OnCollisionEnter2D(Collision2D c) {
-		c.gameObject.SendMessage("JumperHit");
+
+	public GameObject cage;
+
+	void OnTriggerEnter2D(Collider2D other) {
+		if(other.gameObject.tag == "Player")
+			Destroy(cage);
 	}
 }

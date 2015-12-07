@@ -2,7 +2,10 @@
 using System.Collections;
 
 public class CloudKill : MonoBehaviour {
-	void CloudHit() {
-		Destroy (gameObject);
+	public GameObject obj;
+	
+	void OnTriggerEnter2D(Collider2D other) {
+		if(other.gameObject.tag == "Player")
+			Destroy(obj);
 	}
 }
