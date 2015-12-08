@@ -15,13 +15,25 @@ public class DesertDrawBridge : MonoBehaviour {
 		accessCards = GameObject.FindGameObjectsWithTag ("isCardKey");
 		count = 0;
 		swingDown = false;
+		print (accessCards [0]);
+		print (accessCards [3]);
 	}
 	
 	void Update(){
 		DbRotation = Mathf.Clamp (DbRotation, 1, 89.5f);
 
+			if (count == accessCards.Length) {
+				swingDown = true;
+			}
+		if (swingDown){
+			DbRotation += .5f;
+			transform.rotation = Quaternion.Euler(transform.localEulerAngles.x, transform.localEulerAngles.y, DbRotation);
+		} 
+	}
+	void DropDown()
+	{
 		for (int i = 0; i < accessCards.Length; i++) {
-
+			count = 0;
 			if (accessCards [i] = null) {
 				count++;
 			}
@@ -29,9 +41,5 @@ public class DesertDrawBridge : MonoBehaviour {
 				swingDown = true;
 			}
 		}
-		if (swingDown){
-			DbRotation += .5f;
-			transform.rotation = Quaternion.Euler(transform.localEulerAngles.x, transform.localEulerAngles.y, DbRotation);
-		} 
 	}
 }

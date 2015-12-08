@@ -20,11 +20,15 @@ public class CloneMovement : MonoBehaviour {
     public Sprite OriginalClone;
     private SpriteRenderer spriteRenderer;
     AudioSource myAudioSource;
+
     private BoxCollider2D originalCollider;
     private Vector3 storedColliderSize;
     private Vector2 storedColliderOffset;
+	private Vector3 originalScale;
+	private Vector3 itemTransformScale;
     public AudioClip keycardPickup;
     Rigidbody2D myRigid;
+    Rigidbody2D itemRigid;
 
     public float inRange;
     bool isUsingPower = false;
@@ -38,14 +42,16 @@ public class CloneMovement : MonoBehaviour {
         anim.SetBool("isGrounded", isGrounded);
         anim.SetBool("isFacingRight", isFacingRight);
         anim.SetBool("isUsingPower", isUsingPower);
-        inRange = 5.0f;
+		inRange = 10 * transform.localScale.x;
         triggered = false;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
+		originalScale = transform.localScale;
         originalCollider = gameObject.GetComponent<BoxCollider2D>();
         storedColliderSize = GetComponent<BoxCollider2D>().size;
         storedColliderOffset = GetComponent<BoxCollider2D>().offset;
         OriginalClone = transform.GetComponent<SpriteRenderer>().sprite;
+
         myAudioSource = GetComponent<AudioSource>();
         myRigid = GetComponent<Rigidbody2D>();
     }
@@ -125,13 +131,22 @@ public class CloneMovement : MonoBehaviour {
                 {
                     if (Vector3.Distance(itemTransform[i].position, transform.position) < inRange)
                     {
-                        //print("In Range");
+                        print("In Range");
                         if (Input.GetKeyDown(KeyCode.F))
                         {
                             //isUsingPower = true;
                             //anim.SetBool("isUsingPower", isUsingPower);
+							print("Button pressed");
                             CloneCopyCat = itemTransform[index].GetComponent<SpriteRenderer>().sprite;
-                            
+							itemTransformScale = itemTransform[index].GetComponent<Transform>().localScale;
+                            if (!itemTransform[index].GetComponent<Rigidbody2D>())
+                            {
+                               itemRigid = itemTransform[index].gameObject.AddComponent<Rigidbody2D>();
+                            }
+                            else
+                            {
+                                itemRigid = itemTransform[index].GetComponent<Rigidbody2D>();
+                            }
                             //Destroy(originalCollider);
                             index = i;
                             Trigger();
@@ -151,8 +166,10 @@ public class CloneMovement : MonoBehaviour {
         print("Anim" + anim.enabled);
 
         //Put display Icon here
-        spriteRenderer.sprite = CloneCopyCat;
-        originalCollider.size = new Vector3(1, 1, 0);
+		this.gameObject.GetComponent<SpriteRenderer> ().sprite = CloneCopyCat;
+		transform.localScale = itemTransformScale;
+        //spriteRenderer.sprite = CloneCopyCat;
+        originalCollider.size = new Vector3(.5f, .5f, 0);
         originalCollider.offset = new Vector2(0, 0);
         //gameObject.GetComponent<BoxCollider2D>() = itemTransform[index].GetComponent<Collider2D>();
         //gameObject.AddComponent<BoxCollider2D>(clonedCollider);
@@ -166,8 +183,14 @@ public class CloneMovement : MonoBehaviour {
         anim.SetBool("isUsingPower", isUsingPower);
         gameObject.GetComponent<SpriteRenderer>().sprite = OriginalClone;
 
+		transform.localScale = originalScale;
+
         originalCollider.size = storedColliderSize;
         originalCollider.offset = storedColliderOffset;
+        if (itemTransform[index].gameObject.tag != "Player")
+        {
+            itemRigid.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
     }
     void OnCollisionEnter2D(Collision2D c)
     {
@@ -177,17 +200,20 @@ public class CloneMovement : MonoBehaviour {
             myAudioSource.clip = keycardPickup;
             myAudioSource.Play();
             Destroy(c.gameObject);
+            if (GameObject.Find("Sand_Bridge"))
+            {
+                GameObject.Find("Sand_Bridge").GetComponent<DesertDrawBridge>().count++;
+
+            }
         }
     }
     void SetActive()
     {
         isActive = true;
-        myRigid.constraints = RigidbodyConstraints2D.None;
         myRigid.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
     void SetInactive()
     {
         isActive = false;
-        myRigid.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 }

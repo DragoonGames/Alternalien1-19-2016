@@ -24,7 +24,9 @@ public class SandyMovement : MonoBehaviour {
 	//PistonDrops pistonDropStuff;
 	public GameObject[] pistons;
     float[] pistonSavedSpeeds;
-    AudioSource sandyPowerSound;
+    AudioSource myAudioSource;
+    public AudioClip sandyPower;
+    public AudioClip keycardPickup;
     Rigidbody2D myRigid;
 
     void Start()
@@ -33,7 +35,7 @@ public class SandyMovement : MonoBehaviour {
         anim.SetBool("isGrounded", isGrounded);
         anim.SetBool("isFacingRight", isFacingRight);
         anim.SetBool("isUsingPower", isUsingPower);
-        sandyPowerSound = GetComponent<AudioSource>();
+        myAudioSource = GetComponent<AudioSource>();
         triggered = false;
         Time.timeScale = 1;
 		pistons = GameObject.FindGameObjectsWithTag ("Piston");
@@ -95,9 +97,12 @@ public class SandyMovement : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.F))
             {
                 isUsingPower = true;
+				pistonSavedSpeeds = new float[pistons.Length];
                 for (int i = 0; i < pistons.Length; i++)
                 {
+					print (pistons[i].GetComponent<PistonDrops>().pistonSpeed);
                     pistonSavedSpeeds[i] = pistons[i].GetComponent<PistonDrops>().pistonSpeed;
+					pistons[i].GetComponent<PistonDrops>().pistonSpeed = .1F;
                 }
                 Trigger();
             }
@@ -113,9 +118,11 @@ public class SandyMovement : MonoBehaviour {
         print("trigger pressed");
         triggered = true;
         released = false;
-        sandyPowerSound.Play();
+        myAudioSource.Stop();
+        myAudioSource.clip = sandyPower;
+        myAudioSource.Play();
         anim.SetBool("isUsingPower", isUsingPower);
-    //    Time.timeScale = timeToScale;
+        //Time.timeScale = timeToScale;
 		for (int i = 0; i < pistons.Length; i++)
 		{
 			pistons [i].GetComponent<PistonDrops> ().pistonSpeed = 0.005f;
@@ -126,30 +133,34 @@ public class SandyMovement : MonoBehaviour {
     {
         triggered = false;
         released = true;
-        sandyPowerSound.Play();
+        myAudioSource.Stop();
         anim.SetBool("isUsingPower", isUsingPower);
-        sandyPowerSound.Stop();
         for (int i = 0; i < pistons.Length; i++)
         {
-            pistons[i].GetComponent<PistonDrops>().pistonSpeed = 1.0f;
+			pistons[i].GetComponent<PistonDrops>().pistonSpeed = pistonSavedSpeeds[i];
         }
     }
     void OnCollisionEnter2D(Collision2D c)
     {
         if (c.gameObject.tag == "isCardKey")
         {
+            myAudioSource.Stop();
+            myAudioSource.clip = keycardPickup;
+            myAudioSource.Play();
             Destroy(c.gameObject);
+			if (GameObject.Find("Sand_Bridge"))
+			{
+				GameObject.Find("Sand_Bridge").GetComponent<DesertDrawBridge>().count++;
+
+			}
         }
     }
     void SetActive()
     {
         isActive = true;
-        myRigid.constraints = RigidbodyConstraints2D.None;
-        myRigid.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
     void SetInactive()
     {
         isActive = false;
-        myRigid.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 }

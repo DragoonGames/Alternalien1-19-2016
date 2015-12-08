@@ -23,7 +23,13 @@ public class DropStalagmites : MonoBehaviour {
         {
             if (objectToDrop != null)
             {
-                Rigidbody2D objectRigidbody = objectToDrop.AddComponent<Rigidbody2D>();
+                Rigidbody2D objectRigidbody;
+                if (!objectToDrop.GetComponent<Rigidbody2D>())
+                {
+                    objectRigidbody = objectToDrop.AddComponent<Rigidbody2D>();
+                }
+                else
+                    objectRigidbody = objectToDrop.GetComponent<Rigidbody2D>();
                 objectRigidbody.mass = 5;
                 objectRigidbody.gravityScale = 5;
             }
