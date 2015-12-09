@@ -7,15 +7,26 @@ public class DeathScript : MonoBehaviour {
     public GameObject triggerObject;
     public bool deathPossible;
     public bool objectDestroyable;
+    public GameObject[] players;
+    public string screwedLevels;
 
 	// Use this for initialization
 	void Start () {
-	
+        players = GameObject.FindGameObjectsWithTag("Player");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
+        for (int i = 0; i< players.Length; i++)
+        {
+            if (screwedLevels == currentLevel)
+            {
+                if (players[i] == null)   //Death
+                {
+                    Application.LoadLevel(currentLevel);
+                }
+            }
+        }
 	}
     void OnTriggerEnter2D(Collider2D other)
     {

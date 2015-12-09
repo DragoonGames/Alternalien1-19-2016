@@ -48,6 +48,8 @@ public class PauseScript : MonoBehaviour {
                                     ((Screen.height / 2) - (restartButtonHeight / 2)) - restartButtonHeightOffset,
                                     resumeButtonWidth, resumeButtonHeight), "Restart Level"))
             {
+                GameObject activeAlien = Camera.main.GetComponent<ControlScript>().firstTarget.gameObject;
+                Destroy(activeAlien);
                 Application.LoadLevel(currentLevel);
                 
             }
