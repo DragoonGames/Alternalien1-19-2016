@@ -32,6 +32,8 @@ public class DropStalagmites : MonoBehaviour {
                     objectRigidbody = objectToDrop.GetComponent<Rigidbody2D>();
                 objectRigidbody.mass = 5;
                 objectRigidbody.gravityScale = 5;
+				objectRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+				objectRigidbody.constraints = RigidbodyConstraints2D.FreezePositionX;
             }
         }
     }
