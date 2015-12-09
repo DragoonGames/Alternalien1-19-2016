@@ -124,12 +124,9 @@ public class JumperMovement : MonoBehaviour {
     void SetActive()
     {
         isActive = true;
-        myRigid.constraints = RigidbodyConstraints2D.None;
-        myRigid.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
     void SetInactive()
     {
         isActive = false;
-        myRigid.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 }

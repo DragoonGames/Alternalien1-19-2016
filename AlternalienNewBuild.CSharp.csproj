@@ -95,6 +95,7 @@
     <Compile Include="Assets\Scripts\GameState\ControlScript.cs" />
     <Compile Include="Assets\Scripts\GameState\ExitButton.cs" />
     <Compile Include="Assets\Scripts\GameState\ExitScript.cs" />
+    <Compile Include="Assets\Scripts\GameState\FinalCredits.cs" />
     <Compile Include="Assets\Scripts\GameState\PauseScript.cs" />
     <Compile Include="Assets\Scripts\GameState\SceneLoader.cs" />
     <Compile Include="Assets\Scripts\GameState\SmoothFollowCSharp.cs" />
