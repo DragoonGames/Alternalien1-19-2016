@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="26" tilewidth="32" tileheight="32" nextobjectid="15">
+ <tileset firstgid="1" name="bkg_arctic_tileset" tilewidth="32" tileheight="32" tilecount="48">
+  <image source="bkg_arctic_tileset.png" width="256" height="192"/>
+ </tileset>
+ <tileset firstgid="49" name="Tileset" tilewidth="32" tileheight="32" tilecount="16">
+  <image source="Tileset.png" width="128" height="128"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="50" height="26">
+  <data encoding="base64" compression="zlib">
+   eJztlmEKgCAMRgf5yyMldP9jRbCBWJtabpXswUeFsfkwqwgA0TAJM5qyj8TSEa6XFj0eI3pp1p7d4+leOEhCfQuPJOTO/ljgvfXQ6KVZu9VjxWNorE3rt2EsPaSsmPycC+Dc6Zx6WXlI5B7SOM2d2/saaHpc9dLCPfjxP3kEJn/zqL3TrqLt0QrNh/vvzj0Azmtj4SE9D1Dck5jrr3jU6PUo637lez4ijuM4zhzsqIkbjQ==
+  </data>
+ </layer>
+ <objectgroup name="Collision">
+  <object id="2" x="0" y="0" width="127" height="479"/>
+  <object id="3" x="0" y="442" width="30" height="165"/>
+  <object id="4" x="1" y="576" width="894" height="31"/>
+  <object id="5" x="114" y="254" width="237" height="32"/>
+  <object id="6" x="118" y="0" width="776" height="30"/>
+  <object id="7" x="224" y="129" width="512" height="28"/>
+  <object id="8" x="864" y="1" width="31" height="606"/>
+  <object id="9" x="802" y="128" width="81" height="31"/>
+  <object id="11" x="737" y="289" width="147" height="28"/>
+  <object id="12" x="417" y="257" width="30" height="223"/>
+  <object id="13" x="438" y="447" width="201" height="34"/>
+  <object id="14" x="607" y="458" width="32" height="128"/>
+ </objectgroup>
+</map>
