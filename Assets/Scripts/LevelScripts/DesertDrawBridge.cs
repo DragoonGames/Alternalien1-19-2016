@@ -15,8 +15,6 @@ public class DesertDrawBridge : MonoBehaviour {
 		accessCards = GameObject.FindGameObjectsWithTag ("isCardKey");
 		count = 0;
 		swingDown = false;
-		print (accessCards [0]);
-		print (accessCards [3]);
 	}
 	
 	void Update(){

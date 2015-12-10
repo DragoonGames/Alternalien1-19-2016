@@ -8,20 +8,20 @@ public class PauseScript : MonoBehaviour {
 	public float pauseBoxWidth = 250;
 	public float pauseBoxHeight = 150;
 
-	public float resumeButtonWidth = 250;
-	public float resumeButtonHeight = 200;
-	public float resumeButtonWidthOffset = 100;
-	public float resumeButtonHeightOffset = 100;
+	public float resumeButtonWidth = 100;
+	public float resumeButtonHeight = 25;
+	public float resumeButtonWidthOffset = -50;
+	public float resumeButtonHeightOffset = 25;
 
-    public float restartButtonWidth = 250;
-    public float restartButtonHeight = 200;
-    public float restartButtonWidthOffset = 100;
-    public float restartButtonHeightOffset = 100;
+    public float restartButtonWidth = 0;
+    public float restartButtonHeight = 0;
+    public float restartButtonWidthOffset = 0;
+    public float restartButtonHeightOffset = 0;
 
-    public float quitButtonWidth = 250;
-	public float quitButtonHeight = 200;
-	public float quitButtonWidthOffset = 100;
-	public float quitButtonHeightOffset = 100;
+    public float quitButtonWidth = 0;
+	public float quitButtonHeight = 0;
+	public float quitButtonWidthOffset = 0;
+	public float quitButtonHeightOffset = -35;
 
 	public Texture pauseTexture;
 	public Texture resumeButtonTexture;
@@ -57,8 +57,8 @@ public class PauseScript : MonoBehaviour {
             if (GUI.Button(new Rect(((Screen.width / 2) - (quitButtonWidth / 2)) - quitButtonWidthOffset,
 			                        ((Screen.height / 2) - (quitButtonHeight / 2)) - quitButtonHeightOffset,
 			                        resumeButtonWidth, resumeButtonHeight),"Quit"))
-				Application.LoadLevel(mainMenu);
-		}
+                Application.Quit();
+        }
 	}
 	// Use this for initialization
 	void Start () {

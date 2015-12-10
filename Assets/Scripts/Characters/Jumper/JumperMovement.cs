@@ -17,7 +17,6 @@ public class JumperMovement : MonoBehaviour {
     public float nextJump = 0.0F;
     public float secondJump = 3.0F;
 
-    //public Animator anim;
     AudioSource myAudioSource;
     //public AudioClip sandyPower;
     public AudioClip jumpersound;
