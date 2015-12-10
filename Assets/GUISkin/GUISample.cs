@@ -12,7 +12,7 @@ public class GUISample : MonoBehaviour
 	
 	void OnGUI() {
 		GUI.skin = mySkin;
-		mySkin.button.fontSize = (int)(buttonH / 1.5);
+		mySkin.button.fontSize = (int)(buttonH / 1.75);
 		if (Screen.width > 1000)
 			buttonW = Screen.width/5;
 
@@ -25,7 +25,7 @@ public class GUISample : MonoBehaviour
 				Application.LoadLevel(2);
 		}
 		if (gameObject.tag == "Exit") {
-			if (GUI.Button (new Rect ((Screen.width / 2) - (buttonW / 4), (Screen.height / 3) + Screen.height / 2, buttonW/2, buttonH/2), text))
+			if (GUI.Button (new Rect ((Screen.width / 2) - (buttonW / 4), (Screen.height / 3) + Screen.height / 2, buttonW/2, buttonH), text))
 				Application.Quit();
 
 		}
