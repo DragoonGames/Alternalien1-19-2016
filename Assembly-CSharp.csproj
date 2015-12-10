@@ -72,7 +72,6 @@
      <Compile Include="Assets\Scripts\GameState\ControlScript.cs" />
      <Compile Include="Assets\Scripts\GameState\ExitButton.cs" />
      <Compile Include="Assets\Scripts\GameState\ExitScript.cs" />
-     <Compile Include="Assets\Scripts\GameState\FinalCredits.cs" />
      <Compile Include="Assets\Scripts\GameState\PauseScript.cs" />
      <Compile Include="Assets\Scripts\GameState\SceneLoader.cs" />
      <Compile Include="Assets\Scripts\GameState\SmoothFollowCSharp.cs" />
@@ -108,17 +107,11 @@
      <None Include="Assets\Tiled2Unity\Imported\Artic Level design 1.tiled2unity.xml" />
      <None Include="Assets\Tiled2Unity\Imported\Heatstroke_Plaza.tiled2unity.xml" />
      <None Include="Assets\Tiled2Unity\License.txt" />
- <Reference Include="UnityEngine.Advertisements">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
- </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Analytics">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Cecil">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/Mono.Cecil.dll</HintPath>

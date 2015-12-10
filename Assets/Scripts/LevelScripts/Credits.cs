@@ -2,8 +2,12 @@
 using System.Collections;
 
 public class Credits : MonoBehaviour {
+	int speed = 2;
 
     void Update() {
-        //tranform.Translate(Vector3.up * Time.deltaTime);
+		transform.Translate(Vector3.down * Time.deltaTime * speed);
+
+		if (transform.position.y < -50 || Input.anyKeyDown)
+			Application.LoadLevel(1);
     }
 }
