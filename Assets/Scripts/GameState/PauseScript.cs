@@ -10,18 +10,18 @@ public class PauseScript : MonoBehaviour {
 
 	public float resumeButtonWidth = 100;
 	public float resumeButtonHeight = 25;
-	public float resumeButtonWidthOffset = -50;
+    public float resumeButtonWidthOffset = 0;
 	public float resumeButtonHeightOffset = 25;
 
     public float restartButtonWidth = 0;
     public float restartButtonHeight = 0;
-    public float restartButtonWidthOffset = 0;
+    public float restartButtonWidthOffset = 50;
     public float restartButtonHeightOffset = 0;
 
     public float quitButtonWidth = 0;
-	public float quitButtonHeight = 0;
-	public float quitButtonWidthOffset = 0;
-	public float quitButtonHeightOffset = -35;
+	public float quitButtonHeight = -75;
+    public float quitButtonWidthOffset = 50;
+	public float quitButtonHeightOffset = 0;
 
 	public Texture pauseTexture;
 	public Texture resumeButtonTexture;
@@ -51,13 +51,17 @@ public class PauseScript : MonoBehaviour {
                 GameObject activeAlien = Camera.main.GetComponent<ControlScript>().firstTarget.gameObject;
                 Destroy(activeAlien);
                 Application.LoadLevel(currentLevel);
+                Time.timeScale = 1;
                 
             }
 
             if (GUI.Button(new Rect(((Screen.width / 2) - (quitButtonWidth / 2)) - quitButtonWidthOffset,
-			                        ((Screen.height / 2) - (quitButtonHeight / 2)) - quitButtonHeightOffset,
-			                        resumeButtonWidth, resumeButtonHeight),"Quit"))
-                Application.Quit();
+                                    ((Screen.height / 2) - (quitButtonHeight / 2)) - quitButtonHeightOffset,
+                                    resumeButtonWidth, resumeButtonHeight), "Quit"))
+            {
+                Application.LoadLevel(0);
+                Time.timeScale = 1;
+            }
         }
 	}
 	// Use this for initialization

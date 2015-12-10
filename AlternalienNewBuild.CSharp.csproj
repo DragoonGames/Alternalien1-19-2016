@@ -51,11 +51,17 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Advertisements">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Analytics">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
@@ -112,13 +118,9 @@
     <Compile Include="Assets\Scripts\LevelScripts\ExitIntroScene.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\FallingBoulders.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\GeyserBridgeBuilding.cs" />
-    <Compile Include="Assets\Scripts\LevelScripts\LargeFiles.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\PistonDrops.cs" />
-    <Compile Include="Assets\Scripts\LevelScripts\SwingVine.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\TextBoxVisibility.cs" />
-    <Compile Include="Assets\Scripts\LevelScripts\TextVisibility.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\bioClick.cs" />
-    <Compile Include="Assets\Scripts\LevelScripts\climbVine.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\unfairMarioSpikes.cs" />
     <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\SortingLayerExposed.cs" />
     <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\TileAnimator.cs" />

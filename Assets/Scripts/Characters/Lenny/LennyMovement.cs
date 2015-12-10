@@ -17,7 +17,9 @@ public class LennyMovement : MonoBehaviour {
     public float nextJump = 0.0F;
     public Animator anim;
     //Variables for powers
-    public GameObject[] itemTransform;
+    public GameObject[] itemTransform; //All objects to collect including players
+    public GameObject[] playerObjects;  //Gather player tags
+    public GameObject[] taggedObjects;  //Gather all tags for Lenny
     int[] itemTransformScalesX;
     int[] itemTransformScalesY;
 
@@ -40,8 +42,19 @@ public class LennyMovement : MonoBehaviour {
         myRigid = GetComponent<Rigidbody2D>();
         inRange = 50.0f;
         triggered = false;
-        itemTransform = GameObject.FindGameObjectsWithTag("Lenny");
-
+        taggedObjects = GameObject.FindGameObjectsWithTag("Lenny");
+        playerObjects = GameObject.FindGameObjectsWithTag("Player");
+        int taggedCount = taggedObjects.Length + playerObjects.Length - 1;
+        itemTransform = new GameObject[taggedCount];
+        for (int j  = 0; j < taggedObjects.Length; j++)
+        {
+            itemTransform[j] = taggedObjects[j];
+        }
+        for (int k = 0; k < 1; k++)
+        {
+            itemTransform[k + taggedObjects.Length] = GameObject.Find("Clone");
+            itemTransform[k + 1 + taggedObjects.Length] = GameObject.Find("Sandy");
+        }
     }
     IEnumerator Jump()
     {

@@ -8,7 +8,7 @@ public class DeathScript : MonoBehaviour {
     public bool deathPossible;
     public bool objectDestroyable;
     public GameObject[] players;
-    public string screwedLevels;
+    public bool screwedLevels;
 
 	// Use this for initialization
 	void Start () {
@@ -19,11 +19,12 @@ public class DeathScript : MonoBehaviour {
 	void Update () {
         for (int i = 0; i< players.Length; i++)
         {
-            if (screwedLevels == currentLevel)
+            if (screwedLevels)
             {
                 if (players[i] == null)   //Death
                 {
                     Application.LoadLevel(currentLevel);
+                    Time.timeScale = 1;
                 }
             }
         }
