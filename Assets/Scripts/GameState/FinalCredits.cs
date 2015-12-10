@@ -125,6 +125,6 @@ Jeffrey Brown
 ";
         GUI.Label(position, text, this.style);
 
-        GUI.EndGroup();
+       GUI.EndGroup();
     }
 }
