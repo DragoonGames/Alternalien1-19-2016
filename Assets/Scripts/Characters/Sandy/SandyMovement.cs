@@ -125,7 +125,7 @@ public class SandyMovement : MonoBehaviour {
         //Time.timeScale = timeToScale;
 		for (int i = 0; i < pistons.Length; i++)
 		{
-			pistons [i].GetComponent<PistonDrops> ().pistonSpeed = 0.005f;
+			pistons [i].GetComponent<PistonDrops> ().pistonSpeed = 0.1f;
 		}
         //Put display Icon here
     }

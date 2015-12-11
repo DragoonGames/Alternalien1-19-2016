@@ -15,7 +15,7 @@ public class CloneMovement : MonoBehaviour {
     public float nextJump = 0.5F;
 
     public Animator anim;
-    public Transform[] itemTransform;
+    public GameObject[] itemTransform;
     public Sprite CloneCopyCat;
     public Sprite OriginalClone;
     private SpriteRenderer spriteRenderer;
@@ -52,6 +52,7 @@ public class CloneMovement : MonoBehaviour {
         storedColliderOffset = GetComponent<BoxCollider2D>().offset;
         OriginalClone = transform.GetComponent<SpriteRenderer>().sprite;
 
+        itemTransform = GameObject.FindGameObjectsWithTag("Lenny");
         myAudioSource = GetComponent<AudioSource>();
         myRigid = GetComponent<Rigidbody2D>();
     }
@@ -129,7 +130,7 @@ public class CloneMovement : MonoBehaviour {
             {
                 for (int i = 0; i < itemTransform.Length; i++)
                 {
-                    if (Vector3.Distance(itemTransform[i].position, transform.position) < inRange)
+                    if (Vector3.Distance(itemTransform[i].transform.position, transform.position) < inRange)
                     {
                         print("In Range");
                         if (Input.GetKeyDown(KeyCode.F))
@@ -169,8 +170,8 @@ public class CloneMovement : MonoBehaviour {
 		this.gameObject.GetComponent<SpriteRenderer> ().sprite = CloneCopyCat;
 		transform.localScale = itemTransformScale;
         //spriteRenderer.sprite = CloneCopyCat;
-        originalCollider.size = new Vector3(.5f, .5f, 0);
-        originalCollider.offset = new Vector2(0, 0);
+        originalCollider.size = itemTransform[index].GetComponent<BoxCollider2D>().size;
+        originalCollider.offset = itemTransform[index].GetComponent<BoxCollider2D>().offset;
         //gameObject.GetComponent<BoxCollider2D>() = itemTransform[index].GetComponent<Collider2D>();
         //gameObject.AddComponent<BoxCollider2D>(clonedCollider);
     }
