@@ -57,6 +57,7 @@
      <Compile Include="Assets\Scripts\Characters\Crusher\CrushHit.cs" />
      <Compile Include="Assets\Scripts\Characters\Crusher\CrushKill.cs" />
      <Compile Include="Assets\Scripts\Characters\Crusher\CrushMovement.cs" />
+     <Compile Include="Assets\Scripts\Characters\Crusher\RevisedCrushMovement.cs" />
      <Compile Include="Assets\Scripts\Characters\Jumper\AddJumper.cs" />
      <Compile Include="Assets\Scripts\Characters\Jumper\JumpHit.cs" />
      <Compile Include="Assets\Scripts\Characters\Jumper\JumpKill.cs" />
