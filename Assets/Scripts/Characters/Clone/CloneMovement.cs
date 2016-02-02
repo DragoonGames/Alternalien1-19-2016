@@ -132,12 +132,10 @@ public class CloneMovement : MonoBehaviour {
                 {
                     if (Vector3.Distance(itemTransform[i].transform.position, transform.position) < inRange)
                     {
-                        print("In Range");
                         if (Input.GetKeyDown(KeyCode.F))
                         {
                             //isUsingPower = true;
                             //anim.SetBool("isUsingPower", isUsingPower);
-							print("Button pressed");
                             CloneCopyCat = itemTransform[index].GetComponent<SpriteRenderer>().sprite;
 							itemTransformScale = itemTransform[index].GetComponent<Transform>().localScale;
                             if (!itemTransform[index].GetComponent<Rigidbody2D>())

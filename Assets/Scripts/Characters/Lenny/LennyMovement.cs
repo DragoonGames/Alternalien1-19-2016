@@ -96,11 +96,8 @@ public class LennyMovement : MonoBehaviour {
 				if(triggered)
 				{
 					itemTransform[index].transform.Translate(0.5f,0f,0f);
-					print("Move Child");
 				}
 			}
-			//if (triggered)
-			//itemTransform[index].localPosition = new Vector3(-1.5f, 0.5f, 0.0f);
 		}
 	}
     void Update()
@@ -116,7 +113,6 @@ public class LennyMovement : MonoBehaviour {
 			if(triggered)
 			{
 				itemTransform[index].GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
-				print("Move Child");
 			}
             if (isVine)
             {
@@ -124,6 +120,7 @@ public class LennyMovement : MonoBehaviour {
                 GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed, vertical * maxSpeed);
             }
             CheckDirection(speed);
+
             //Check for One Jump
             //Calls jump if button pressed, and is Grounded
             if (Input.GetButton("Jump") && isGrounded)
@@ -150,32 +147,19 @@ public class LennyMovement : MonoBehaviour {
             //MoveChild();
             if (Input.GetKey(KeyCode.UpArrow) && triggered)
             {
-                //Rigidbody2D itemMass = itemTransform[index].GetComponent<Rigidbody2D>();
-                //itemMass.mass = 0;
-                //itemMass.gravityScale = 0;
-                //itemTransform[index].transform.Translate(0, 2, 0);
-                //move = Input.GetAxis("Vertical");
                 itemTransform[index].transform.Translate(0f, 1f, 0f);
             }
 			if (Input.GetKey(KeyCode.DownArrow) && triggered)
 			{
-				//Rigidbody2D itemMass = itemTransform[index].GetComponent<Rigidbody2D>();
-				//itemMass.mass = 0;
-				//itemMass.gravityScale = 0;
-				//itemTransform[index].transform.Translate(0, 2, 0);
-				//move = Input.GetAxis("Vertical");
 				itemTransform[index].transform.Translate(0f, -1f, 0f);
 			}
         }
     }
     void Trigger()
     {
-        print("trigger pressed");
         triggered = true;
         released = false;
 
-        print("in else statement");
-        //Put display Icon here
         anim.SetBool("isUsingPower", isUsingPower);
         itemTransform[index].transform.parent = transform;
 
@@ -184,16 +168,6 @@ public class LennyMovement : MonoBehaviour {
 
         Rigidbody2D itemRigid = itemTransform[index].GetComponent<Rigidbody2D>();
         itemRigid.constraints = RigidbodyConstraints2D.FreezeRotation;
-        //Destroy(itemRigid);
-        /*if (isFacingRight)
-        {
-            itemTransform[index].localPosition = new Vector3(1.5f, 0.5f, 0.0f);
-        }
-        else if (isFacingLeft)
-        {
-            itemTransform[index].localPosition = new Vector3(-1.5f, 0.5f, 0.0f);
-        }
-        */
     }
     void Released() 
     {
@@ -202,7 +176,6 @@ public class LennyMovement : MonoBehaviour {
 
         if (isFacingLeft)
         {
-            print("Detach");
             anim.SetBool("isUsingPower", isUsingPower);
             itemTransform[index].transform.parent = null;
         }
@@ -218,15 +191,7 @@ public class LennyMovement : MonoBehaviour {
             if (GameObject.Find("Sand_Bridge"))
             {
                 GameObject.Find("Sand_Bridge").GetComponent<DesertDrawBridge>().count++;
-
             }
-        }
-    }
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "ClimbVine")
-        {
-            isVine = true;
         }
     }
     void SetActive()
@@ -241,11 +206,6 @@ public class LennyMovement : MonoBehaviour {
     {
         if (triggered) //Child attached to parent
         {
-            print("In MoveChild()");
-            /*float horizontal = Input.GetAxis("Horizontal");
-            float vertical = Input.GetAxis("Vertical");
-            itemTransform[index].GetComponent<Rigidbody2D>().velocity = new Vector2(horizontal * maxSpeed, vertical * maxSpeed);
-            */
             Rigidbody2D LennyMass = transform.GetComponent<Rigidbody2D>();
             LennyMass.gravityScale = 0;
             LennyMass.mass = 0;
