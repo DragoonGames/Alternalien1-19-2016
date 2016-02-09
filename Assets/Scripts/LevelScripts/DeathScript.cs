@@ -16,19 +16,6 @@ public class DeathScript : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        for (int i = 0; i< players.Length; i++)
-        {
-            if (screwedLevels)
-            {
-                if (players[i] == null)   //Death
-                {
-                    Application.LoadLevel(currentLevel);
-                    Time.timeScale = 1;
-                }
-            }
-        }
-	}
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
@@ -46,6 +33,8 @@ public class DeathScript : MonoBehaviour {
         }
         if (other.gameObject.tag == "isBreakable")
         {
+            print("isBreakable");
+            print(other.gameObject.name);
             if (objectDestroyable)
             {
                 Destroy(other.gameObject);
