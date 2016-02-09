@@ -6,5 +6,9 @@ public class CrushHit : MonoBehaviour {
 		if (c.gameObject.tag == "isBreakable") {
 			Destroy (c.gameObject);
 		}
+        if (c.gameObject.tag == "isCage" && gameObject.name != "Sandy")
+        {
+            Destroy(c.gameObject);
+        }
 	}
 }
