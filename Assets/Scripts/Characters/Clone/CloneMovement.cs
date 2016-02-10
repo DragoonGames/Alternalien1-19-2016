@@ -6,13 +6,13 @@ public class CloneMovement : MonoBehaviour {
     bool isFacingRight = true;
     bool isFacingLeft = false;
 
-    public float maxSpeed = 10f;
-    public float jumpSpeed = 100f;
+    public float maxSpeed = 100f;
+    public float jumpSpeed = 15000f;
     private bool isActive = false;
     bool isGrounded = true;
 
     private float jumpRate = 0.25F;
-    public float nextJump = 0.5F;
+    float nextJump = 0.75F;
 
     public Animator anim;
     public GameObject[] itemTransform;
@@ -132,12 +132,10 @@ public class CloneMovement : MonoBehaviour {
                 {
                     if (Vector3.Distance(itemTransform[i].transform.position, transform.position) < inRange)
                     {
-                        print("In Range");
                         if (Input.GetKeyDown(KeyCode.F))
                         {
                             //isUsingPower = true;
                             //anim.SetBool("isUsingPower", isUsingPower);
-							print("Button pressed");
                             CloneCopyCat = itemTransform[index].GetComponent<SpriteRenderer>().sprite;
 							itemTransformScale = itemTransform[index].GetComponent<Transform>().localScale;
                             if (!itemTransform[index].GetComponent<Rigidbody2D>())
