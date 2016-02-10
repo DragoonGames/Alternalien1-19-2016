@@ -107,14 +107,14 @@ public class SandyMovement : MonoBehaviour {
                 StartCoroutine(Jump());
             }
             CheckDirection(speed);
-            if (Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.F) && !isUsingPower)
             {
                 isUsingPower = true;
                 AnimationBoolControl(speed, isFacingRight, isUsingPower, isGrounded);
                 pistonSavedSpeeds = new float[pistons.Length];
                 for (int i = 0; i < pistons.Length; i++)
                 {
-					print (pistons[i].GetComponent<PistonDrops>().pistonSpeed);
+					//print (pistons[i].GetComponent<PistonDrops>().pistonSpeed);
                     pistonSavedSpeeds[i] = pistons[i].GetComponent<PistonDrops>().pistonSpeed;
 					pistons[i].GetComponent<PistonDrops>().pistonSpeed = .1F;
                 }
@@ -135,7 +135,7 @@ public class SandyMovement : MonoBehaviour {
         released = false;
         myAudioSource.Stop();
         myAudioSource.clip = sandyPower;
-        myAudioSource.Play(220500);     //Test for 5 seconds
+        myAudioSource.Play(8820);     //Test for 5 seconds
         //Time.timeScale = timeToScale;
 		for (int i = 0; i < pistons.Length; i++)
 		{
