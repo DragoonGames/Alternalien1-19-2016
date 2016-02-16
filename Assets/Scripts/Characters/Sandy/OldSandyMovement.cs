@@ -1,20 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Threading;
 
-public class OldSandyMovement : MonoBehaviour {
-
-    private System.Threading.Thread m_thread = null;
+public class SandyMovement : MonoBehaviour {
 
     bool isFacingRight = true;
 
-    public float maxSpeed = 100f;
-    public float jumpSpeed = 11500f;
+    public float maxSpeed = 10f;
+    public float jumpSpeed = 100f;
     private bool isActive = false;
     bool isGrounded = true;
 
     private float jumpRate = 0.25F;
-    float nextJump = 0.75F;
+    public float nextJump = 0.0F;
     public Animator anim;
 
     //Variables for powers
@@ -35,55 +32,42 @@ public class OldSandyMovement : MonoBehaviour {
     void Start()
     {
         anim = GetComponent<Animator>();
-        m_thread = new System.Threading.Thread(Run);
-        m_thread.Start();
+        anim.SetBool("isGrounded", isGrounded);
+        anim.SetBool("isFacingRight", isFacingRight);
+        anim.SetBool("isUsingPower", isUsingPower);
         myAudioSource = GetComponent<AudioSource>();
         triggered = false;
         Time.timeScale = 1;
 		pistons = GameObject.FindGameObjectsWithTag ("Piston");
         myRigid = GetComponent<Rigidbody2D>();
     }
-    private void AnimationBoolControl(float speed, bool facingRight, bool power, bool ground)
-    {
-        /*print(speed);
-        print(facingRight);
-        print(power);
-        print(ground);*/
-        if (speed != 0)
-        {
-            anim.SetFloat("speed", speed);
-        }
-        anim.SetBool("isFacingRight", facingRight);
-        anim.SetBool("isUsingPower", power);
-        anim.SetBool("isGrounded", ground);
-    }
-    private void Run()
-    {
-        AnimationBoolControl(0.0f, isFacingRight, isUsingPower, isGrounded);
-    }
     IEnumerator Jump()
     {
         isGrounded = false;
-        AnimationBoolControl(0, isFacingRight, isUsingPower, isGrounded);
+        anim.SetBool("isGrounded", isGrounded);
         GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpSpeed);
+
         yield return new WaitForSeconds(nextJump);
+
         isGrounded = true;
-        AnimationBoolControl(0, isFacingRight, isUsingPower, isGrounded);
+        anim.SetBool("isGrounded", isGrounded);
     }
-    void CheckDirection(float moveSpeed)
+    void CheckDirection()
     {
-		//moveSpeed = 100f;
-		if (!isFacingRight)
+		float moveSpeed;
+        if (!isFacingRight)
         {
             if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
             {
 				moveSpeed = 8f;
-                isFacingRight = true;
-                AnimationBoolControl(moveSpeed, isFacingRight, isUsingPower, isGrounded);
+				isFacingRight = true;
+                //Start of Changing Sprites
+                anim.SetFloat("speed", moveSpeed);
+                anim.SetBool("isFacingRight", isFacingRight);
             }
-			else{
+			if(Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.D)){
 				moveSpeed = 0.0f;
-				AnimationBoolControl(moveSpeed, isFacingRight, isUsingPower, isGrounded);
+				anim.SetFloat("speed", moveSpeed);
 			}
         }
         if (isFacingRight)
@@ -91,50 +75,51 @@ public class OldSandyMovement : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
             {
 				moveSpeed = -8f;
-                isFacingRight = false;
-                AnimationBoolControl(moveSpeed, isFacingRight, isUsingPower, isGrounded);
+				isFacingRight = false;
+                //Start of Changing Sprites
+                anim.SetFloat("speed", moveSpeed);
+                anim.SetBool("isFacingRight", isFacingRight);
             }
-			else{
+			if(Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.A)){
 				moveSpeed = 0.0f;
-				AnimationBoolControl(moveSpeed, isFacingRight, isUsingPower, isGrounded);
+				anim.SetFloat("speed", moveSpeed);
 			}
         }
     }
     void Update()
     {
+
         if (isActive)
         {
-            Run();
             //CheckDirection(speed);
             float move = Input.GetAxis("Horizontal");
-            float speed = (move * maxSpeed);
+            //float speed = (move * maxSpeed);
+            //anim.SetFloat("speed", speed);
             GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
 
-            CheckDirection(speed);
+			CheckDirection(); // was CheckDirection(speed);
             //Check for One Jump
             //Calls jump if button pressed, and is Grounded
             if (Input.GetButton("Jump") && isGrounded)
             {
                 StartCoroutine(Jump());
             }
-            CheckDirection(speed);
-            if (Input.GetKeyDown(KeyCode.F) && !isUsingPower)
+            CheckDirection();
+            if (Input.GetKeyDown(KeyCode.F))
             {
                 isUsingPower = true;
-                AnimationBoolControl(speed, isFacingRight, isUsingPower, isGrounded);
-                pistonSavedSpeeds = new float[pistons.Length];
+				pistonSavedSpeeds = new float[pistons.Length];
                 for (int i = 0; i < pistons.Length; i++)
                 {
-					//print (pistons[i].GetComponent<PistonDrops>().pistonSpeed);
+					print (pistons[i].GetComponent<PistonDrops>().pistonSpeed);
                     pistonSavedSpeeds[i] = pistons[i].GetComponent<PistonDrops>().pistonSpeed;
-					pistons[i].GetComponent<PistonDrops>().pistonSpeed = 0.1F;
+					pistons[i].GetComponent<PistonDrops>().pistonSpeed = .1F;
                 }
                 Trigger();
             }
             if (triggered && Input.GetKeyDown(KeyCode.C))
             {
                 isUsingPower = false;
-                AnimationBoolControl(speed, isFacingRight, isUsingPower, isGrounded);
                 Released();
             }
         }
@@ -146,18 +131,21 @@ public class OldSandyMovement : MonoBehaviour {
         released = false;
         myAudioSource.Stop();
         myAudioSource.clip = sandyPower;
-        myAudioSource.Play(8820);     //Test for 5 seconds
+        myAudioSource.Play();
+        anim.SetBool("isUsingPower", isUsingPower);
         //Time.timeScale = timeToScale;
 		for (int i = 0; i < pistons.Length; i++)
 		{
 			pistons [i].GetComponent<PistonDrops> ().pistonSpeed = 0.1f;
 		}
+        //Put display Icon here
     }
     void Released()
     {
         triggered = false;
         released = true;
         myAudioSource.Stop();
+        anim.SetBool("isUsingPower", isUsingPower);
         for (int i = 0; i < pistons.Length; i++)
         {
 			pistons[i].GetComponent<PistonDrops>().pistonSpeed = pistonSavedSpeeds[i];
@@ -169,11 +157,12 @@ public class OldSandyMovement : MonoBehaviour {
         {
             myAudioSource.Stop();
             myAudioSource.clip = keycardPickup;
-            myAudioSource.Play(8820);       //Test for 5 seconds
+            myAudioSource.Play();
             Destroy(c.gameObject);
 			if (GameObject.Find("Sand_Bridge"))
 			{
 				GameObject.Find("Sand_Bridge").GetComponent<DesertDrawBridge>().count++;
+
 			}
         }
     }
