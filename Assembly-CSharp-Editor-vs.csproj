@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{58F2C1A9-7DF4-650B-A4E1-BDC029C0F309}</ProjectGuid>
+	<ProjectGuid>{6772B16A-9C2B-C3D5-1C78-089E7CA44D4F}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -68,7 +68,7 @@
      <None Include="Assets\Tiled2Unity\Imported\Heatstroke_Plaza.tiled2unity.xml" />
      <None Include="Assets\Tiled2Unity\License.txt" />
  <Reference Include="Assembly-UnityScript">
- <HintPath>C:/Users/harmsene/Desktop/GitHub/AlternalienNewBuild/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
+ <HintPath>C:/Users/student/Documents/GitHub/Alternalien1-19-2016/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
@@ -127,7 +127,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-vs.csproj">
-      <Project>{791759BB-ED2C-5F1D-6ABD-EA7F53A735CE}</Project>      <Name>Assembly-CSharp-vs</Name>    </ProjectReference>
+      <Project>{7829B4EE-3966-F11A-C924-7899BA858E08}</Project>      <Name>Assembly-CSharp-vs</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

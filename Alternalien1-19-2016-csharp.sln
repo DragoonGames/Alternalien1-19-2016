@@ -1,11 +1,9 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
-Project("{F8027738-BDD1-B3D5-29A2-611ABB96F435}") = "Alternalien1-19-2016", "Assembly-CSharp.csproj", "{7829B4EE-3966-F11A-C924-7899BA858E08}"
+Project("{F8027738-BDD1-B3D5-29A2-611ABB96F435}") = "Alternalien1-19-2016", "Assembly-CSharp-vs.csproj", "{7829B4EE-3966-F11A-C924-7899BA858E08}"
 EndProject
-Project("{F8027738-BDD1-B3D5-29A2-611ABB96F435}") = "Alternalien1-19-2016", "Assembly-CSharp-Editor.csproj", "{6772B16A-9C2B-C3D5-1C78-089E7CA44D4F}"
-EndProject
-Project("{F8027738-BDD1-B3D5-29A2-611ABB96F435}") = "Alternalien1-19-2016", "Assembly-UnityScript.unityproj", "{FAC569FA-1882-37CC-A5A8-3A6E7C7BB9F6}"
+Project("{F8027738-BDD1-B3D5-29A2-611ABB96F435}") = "Alternalien1-19-2016", "Assembly-CSharp-Editor-vs.csproj", "{6772B16A-9C2B-C3D5-1C78-089E7CA44D4F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,15 +19,11 @@ Global
 		{6772B16A-9C2B-C3D5-1C78-089E7CA44D4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6772B16A-9C2B-C3D5-1C78-089E7CA44D4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6772B16A-9C2B-C3D5-1C78-089E7CA44D4F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FAC569FA-1882-37CC-A5A8-3A6E7C7BB9F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FAC569FA-1882-37CC-A5A8-3A6E7C7BB9F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FAC569FA-1882-37CC-A5A8-3A6E7C7BB9F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FAC569FA-1882-37CC-A5A8-3A6E7C7BB9F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
+		GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
@@ -48,4 +42,5 @@ Global
 		$3.inheritsScope = text/plain
 		$3.scope = text/plain
 	EndGlobalSection
+
 EndGlobal
