@@ -8,13 +8,13 @@ public class SandyMovement : MonoBehaviour {
 
     bool isFacingRight = true;
 
-    public float maxSpeed = 10f;
-    public float jumpSpeed = 100f;
+    public float maxSpeed = 100f;
+    public float jumpSpeed = 11500f;
     private bool isActive = false;
     bool isGrounded = true;
 
     private float jumpRate = 0.25F;
-    public float nextJump = 0.0F;
+    float nextJump = 0.75F;
     public Animator anim;
 
     //Variables for powers
@@ -45,10 +45,10 @@ public class SandyMovement : MonoBehaviour {
     }
     private void AnimationBoolControl(float speed, bool facingRight, bool power, bool ground)
     {
-        print(speed);
+        /*print(speed);
         print(facingRight);
         print(power);
-        print(ground);
+        print(ground);*/
         if (speed != 0)
         {
             anim.SetFloat("speed", speed);
@@ -107,14 +107,14 @@ public class SandyMovement : MonoBehaviour {
                 StartCoroutine(Jump());
             }
             CheckDirection(speed);
-            if (Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.F) && !isUsingPower)
             {
                 isUsingPower = true;
                 AnimationBoolControl(speed, isFacingRight, isUsingPower, isGrounded);
                 pistonSavedSpeeds = new float[pistons.Length];
                 for (int i = 0; i < pistons.Length; i++)
                 {
-					print (pistons[i].GetComponent<PistonDrops>().pistonSpeed);
+					//print (pistons[i].GetComponent<PistonDrops>().pistonSpeed);
                     pistonSavedSpeeds[i] = pistons[i].GetComponent<PistonDrops>().pistonSpeed;
 					pistons[i].GetComponent<PistonDrops>().pistonSpeed = .1F;
                 }
@@ -135,7 +135,7 @@ public class SandyMovement : MonoBehaviour {
         released = false;
         myAudioSource.Stop();
         myAudioSource.clip = sandyPower;
-        myAudioSource.Play(220500);     //Test for 5 seconds
+        myAudioSource.Play(8820);     //Test for 5 seconds
         //Time.timeScale = timeToScale;
 		for (int i = 0; i < pistons.Length; i++)
 		{

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class DropStalagmites : MonoBehaviour {
 
@@ -8,9 +9,12 @@ public class DropStalagmites : MonoBehaviour {
 
     public bool isTrigger;
     public bool onDestroy;
+    public bool onlyOnPlayer;
+
+    public List<string> exemptTags;
 	// Use this for initialization
 	void Start () {
-	
+
 	}
 	
 	// Update is called once per frame
@@ -19,22 +23,47 @@ public class DropStalagmites : MonoBehaviour {
 	}
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (isTrigger)
+        print("Tag is: " + other.gameObject.tag + " GameObject is " + other.gameObject.name);
+        print(exemptTags.Contains(other.gameObject.tag));
+        if (!exemptTags.Contains(other.gameObject.tag))
         {
-            if (objectToDrop != null)
+            print(exemptTags.Contains(other.gameObject.tag));
+            if (isTrigger)
             {
-                Rigidbody2D objectRigidbody;
-                if (!objectToDrop.GetComponent<Rigidbody2D>())
+                if (objectToDrop != null)
                 {
-                    objectRigidbody = objectToDrop.AddComponent<Rigidbody2D>();
+                    Rigidbody2D objectRigidbody;
+                    if (!objectToDrop.GetComponent<Rigidbody2D>())
+                    {
+                        objectRigidbody = objectToDrop.AddComponent<Rigidbody2D>();
+                    }
+                    else
+                    {
+                        objectRigidbody = objectToDrop.GetComponent<Rigidbody2D>();
+                        objectRigidbody.mass = 5;
+                        objectRigidbody.gravityScale = 5;
+                    }
                 }
-                else
-                    objectRigidbody = objectToDrop.GetComponent<Rigidbody2D>();
-                objectRigidbody.mass = 5;
-                objectRigidbody.gravityScale = 5;
-				objectRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
-				objectRigidbody.constraints = RigidbodyConstraints2D.FreezePositionX;
             }
+            /*else
+            {
+                if (isTrigger)
+                {
+                    if (objectToDrop != null)
+                    {
+                        Rigidbody2D objectRigidbody;
+                        if (!objectToDrop.GetComponent<Rigidbody2D>())
+                            objectRigidbody = objectToDrop.AddComponent<Rigidbody2D>();
+                        else
+                        {
+                            objectRigidbody = objectToDrop.GetComponent<Rigidbody2D>();
+                            objectRigidbody.mass = 5;
+                            objectRigidbody.gravityScale = 5;
+                        }
+                    }
+                }
+            }
+            */
         }
     }
     void OnDestroyObject()

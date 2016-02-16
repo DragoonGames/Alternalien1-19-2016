@@ -6,15 +6,15 @@ public class LennyMovement : MonoBehaviour {
     bool isFacingRight = true;
     bool isFacingLeft = false;
 
-    public float maxSpeed = 10f;
-    public float jumpSpeed = 100f;
+    public float maxSpeed = 100f;
+    public float jumpSpeed = 15000f;
     private bool isActive = false;
     private bool isVine = false;
     bool isGrounded = true;
     bool isUsingPower = false;
 
-    private float jumpRate = 0.25F;
-    public float nextJump = 0.0F;
+    float jumpRate = 0.25F;
+    float nextJump = 0.75F;
     public Animator anim;
     //Variables for powers
     public GameObject[] itemTransform; //All objects to collect including players

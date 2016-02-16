@@ -57,6 +57,12 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -107,6 +113,7 @@
     <Compile Include="Assets\Scripts\LevelScripts\Credits.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\DeathScript.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\DesertDrawBridge.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\DestroyStalagmite.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\DrawBridgeSwing.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\DropStalagmites.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\ExitIntroScene.cs" />
