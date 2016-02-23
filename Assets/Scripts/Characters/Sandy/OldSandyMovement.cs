@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SandyMovement : MonoBehaviour {
+public class OldSandyMovement : MonoBehaviour {
 
     bool isFacingRight = true;
 

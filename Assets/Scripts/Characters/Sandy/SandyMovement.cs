@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Threading;
 
-public class OldSandyMovement : MonoBehaviour {
+public class SandyMovement : MonoBehaviour {
 
     private System.Threading.Thread m_thread = null;
 
@@ -35,79 +35,84 @@ public class OldSandyMovement : MonoBehaviour {
     void Start()
     {
         anim = GetComponent<Animator>();
-        m_thread = new System.Threading.Thread(Run);
-        m_thread.Start();
+        anim.SetBool("isGrounded", isGrounded);
+        anim.SetBool("isFacingRight", isFacingRight);
+        anim.SetBool("isUsingPower", isUsingPower);
+        /*m_thread = new System.Threading.Thread(Run);
+        m_thread.Start();*/
         myAudioSource = GetComponent<AudioSource>();
         triggered = false;
         Time.timeScale = 1;
 		pistons = GameObject.FindGameObjectsWithTag ("Piston");
         myRigid = GetComponent<Rigidbody2D>();
     }
-    private void AnimationBoolControl(float speed, bool facingRight, bool power, bool ground)
+    /*private void AnimationBoolControl(float speed, bool facingRight, bool power, bool ground)
     {
         /*print(speed);
         print(facingRight);
         print(power);
-        print(ground);*/
+        print(ground);
         if (speed != 0)
         {
             anim.SetFloat("speed", speed);
         }
+        anim.SetFloat("speed", speed);
         anim.SetBool("isFacingRight", facingRight);
         anim.SetBool("isUsingPower", power);
         anim.SetBool("isGrounded", ground);
-    }
-    private void Run()
+    }*/
+    /*private void Run()
     {
         AnimationBoolControl(0.0f, isFacingRight, isUsingPower, isGrounded);
-    }
+    }*/
     IEnumerator Jump()
     {
         isGrounded = false;
-        AnimationBoolControl(0, isFacingRight, isUsingPower, isGrounded);
+        //AnimationBoolControl(0, isFacingRight, isUsingPower, isGrounded);
+        anim.SetBool("isGrounded", isGrounded);
         GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpSpeed);
+
         yield return new WaitForSeconds(nextJump);
+
         isGrounded = true;
-        AnimationBoolControl(0, isFacingRight, isUsingPower, isGrounded);
+        //(0, isFacingRight, isUsingPower, isGrounded);
+        anim.SetBool("isGrounded", isGrounded);
     }
     void CheckDirection(float moveSpeed)
     {
-		//moveSpeed = 100f;
-		if (!isFacingRight)
-        {
-            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
-            {
-				moveSpeed = 8f;
-                isFacingRight = true;
-                AnimationBoolControl(moveSpeed, isFacingRight, isUsingPower, isGrounded);
-            }
-			else{
-				moveSpeed = 0.0f;
-				AnimationBoolControl(moveSpeed, isFacingRight, isUsingPower, isGrounded);
-			}
-        }
         if (isFacingRight)
         {
+            anim.SetBool("isFacingRight", isFacingRight);
+
             if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
             {
-				moveSpeed = -8f;
                 isFacingRight = false;
-                AnimationBoolControl(moveSpeed, isFacingRight, isUsingPower, isGrounded);
+                //Start of Changing Sprites
+                anim.SetFloat("speed", moveSpeed);
+                anim.SetBool("isFacingRight", isFacingRight);
             }
-			else{
-				moveSpeed = 0.0f;
-				AnimationBoolControl(moveSpeed, isFacingRight, isUsingPower, isGrounded);
-			}
+
+        }
+        if (!isFacingRight)
+        {
+            anim.SetBool("isFacingRight", isFacingRight);
+
+            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+            {
+                isFacingRight = true;
+                //Start of Changing Sprites
+                anim.SetFloat("speed", moveSpeed);
+                anim.SetBool("isFacingRight", isFacingRight);
+            }
         }
     }
     void Update()
     {
         if (isActive)
         {
-            Run();
-            //CheckDirection(speed);
             float move = Input.GetAxis("Horizontal");
             float speed = (move * maxSpeed);
+            anim.SetFloat("speed", speed);
             GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
 
             CheckDirection(speed);
@@ -121,7 +126,8 @@ public class OldSandyMovement : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.F) && !isUsingPower)
             {
                 isUsingPower = true;
-                AnimationBoolControl(speed, isFacingRight, isUsingPower, isGrounded);
+                //AnimationBoolControl(speed, isFacingRight, isUsingPower, isGrounded);
+                anim.SetBool("isUsingPower", isUsingPower);
                 pistonSavedSpeeds = new float[pistons.Length];
                 for (int i = 0; i < pistons.Length; i++)
                 {
@@ -134,7 +140,8 @@ public class OldSandyMovement : MonoBehaviour {
             if (triggered && Input.GetKeyDown(KeyCode.C))
             {
                 isUsingPower = false;
-                AnimationBoolControl(speed, isFacingRight, isUsingPower, isGrounded);
+                //AnimationBoolControl(speed, isFacingRight, isUsingPower, isGrounded);
+                anim.SetBool("isUsingPower", isUsingPower);
                 Released();
             }
         }
