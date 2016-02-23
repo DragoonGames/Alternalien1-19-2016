@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="175" height="34" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="bkg_jungle_tileset" tilewidth="32" tileheight="32">
+  <image source="Jungle Tiled/bkg_jungle_tileset.png" width="544" height="96"/>
+ </tileset>
+ <tileset firstgid="52" name="bkg_desert_tileset" tilewidth="32" tileheight="32">
+  <image source="Jungle Tiled/bkg_desert_tileset.png" width="256" height="64"/>
+ </tileset>
+ <tileset firstgid="68" name="Huge Palm Tree" tilewidth="32" tileheight="32">
+  <image source="DesertTiled/Huge Palm Tree.png" width="75" height="115"/>
+ </tileset>
+ <tileset firstgid="74" name="palmtree" tilewidth="32" tileheight="32">
+  <image source="DesertTiled/palmtree.png" width="75" height="115"/>
+ </tileset>
+ <tileset firstgid="80" name="Lakecubes" tilewidth="32" tileheight="32">
+  <image source="Artic Tiled/Lakecubes.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="81" name="TreeCave" tilewidth="32" tileheight="32">
+  <image source="Jungle Tiled/TreeCave.png" width="256" height="192"/>
+ </tileset>
+ <tileset firstgid="129" name="cage" tilewidth="32" tileheight="32">
+  <image source="Jungle Tiled/cage.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="133" name="DeadBushes.fw" tilewidth="32" tileheight="32">
+  <image source="Jungle Tiled/DeadBushes.fw.png" width="256" height="64"/>
+ </tileset>
+ <tileset firstgid="149" name="junglespikes" tilewidth="32" tileheight="32">
+  <image source="Jungle Tiled/junglespikes.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="150" name="junglecrate" tilewidth="32" tileheight="32">
+  <image source="Jungle Tiled/junglecrate.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="151" name="Card" tilewidth="32" tileheight="32">
+  <image source="Jungle Tiled/Card.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="152" name="jungle_pipe" tilewidth="32" tileheight="32">
+  <image source="Jungle Tiled/jungle_pipe.png" width="75" height="115"/>
+ </tileset>
+ <tileset firstgid="158" name="Rope Sprite" tilewidth="32" tileheight="32">
+  <image source="Jungle Tiled/Rope Sprite.png" width="32" height="32"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="175" height="34">
+  <data encoding="base64" compression="zlib">
+   eJztmkFuwyAQRZGPkGV3PUQOkBv0AM2u3bXH6X3rLJAQYQIeA2Pwe9ITAct27PkaR0mcAwAAAACAPbxbvwEAJWQXRoXswqiQXRgVsgujQnZhVMgujArZhRbcBvIqvK7lm6D1daf8MHIRxpqWclEYnkezv9Zr5GPtllgPt28xldu/zteorQPZ3XbPWtZlEfS5TK3F+h6195y5/TR9s1V2nTDWysuRsMyulJVcJkNdwXaYkxrPqD3ZLckn2S1jicbZGSm7qd7snNyrZ69h6n46YSyphxPGGbTOrrYvz4p0T1NjSS2cMFrn7mjmPutu+cx7tuy2rIkm92ezR8+dNbsPrOt3ZsnuPqzrd2bJrg7ruiHZ1XIJRiS7rfDXWvuY4bGR7LagJLe5fMfbrOuGx8puLj8a4mNK9+HV+VPr1nXDftnlO0qsbfh7bdwnt/RRsou9jf9r8Ll6fzH/Wv12z4TrqZyTXWytz6A0/1n9TewnrSP20vfZ0nluHbGXub4bz3PriL2Mn/25eW4d5/cf1UBDMA==
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="175" height="34" opacity="0.88">
+  <data encoding="base64" compression="zlib">
+   eJztmUtuwjAQhk02Eajtot1UVC2XYINUFlUvwL5SV71Inzcg6kPirHWELUaWJ548cOLwf9IvO8YeBvNrZIxSAAAAAAAAAAD6ZOIRACmQab0SZf2mA4CY0qvvau/bNwXvAjlXFYqB9W6pD5Wed+d9JzByJL4sTGu/C5w7ZcC7YdrUxQnTUjKmDeUQs0ZLOdM6J7roOCaNN1bvdrmHEv9xSHwpmcPlELtGcz6y3GrdES2E66qgMRdkvPTut9ZPzXiUpnm1+TwhuD1sgsRbVWvnTtskPjen6zNq3kAbo2uPmsSTaqf1q/Vn+rn5DHOjR0eFZyx38iyMchLHVSivJnSxHxuPMk8rpSuv+XKom8uxuYz8fjumv1YHnynSt3t1Q1SFz7ep0bbuNl0riTMk7w6B0l+FOnht3W86UXnwSDGtRG3WSuJI450KK7X3q+vZ+x5yic1YvVvnfVJmZVp772jPD3RsrMC76bD2aOU8W07t/NA37m+ElH8zHJsnrWeF8/9QOEWv+mopVWg/4N14SO4PQnPG/n29eMaof6ekP/a9GBpD+m8iBeydQcYIgD7h/tOy2POtCzcOQCzcOoq6CobMlhmfOs8z0rd1dmbkzgUgBkt18KBlxqhkyoyH1gHQNXU9SGstNw/eBTH41PrqYS0AbVkauXfbS/K8ZV4PrVOeZwC6QuJB7nVuvGwnnjgApMAuPAWAwVHW253CvTBIE/gWADBk/gG2lVp+
+  </data>
+ </layer>
+ <layer name="Tile Layer 5" width="175" height="34">
+  <data encoding="base64" compression="zlib">
+   eJzt2U1uwjAQhmHDGrpBbCJVqHur7QW66nW4RtsTIHactV40kgWeENdOZkzeR/oUL3A8YoYfgXPT2IRshTxNdCbsG5oLKzPyHLIXcpipBun8/Uzno03MLlr1GvIm5F2xLiDXy8LPh8x6b7Tr0z4fMuu90a5P+3zIrPdGuz7t8yGz3pu4vt1AhnSVzoct1nsT17cOWf3lGK3Xd+6xE9a558MWzd74q2tKzuz6KO5qXxetc1ifXS+sl2Cq3ngnz5Jzt3Obunp3O7tSUnvjfaWzO+Z1JinZe75z35J7t67m7H6FfIf8FO75z316q2jdfxfuBtZ9SnSJ5Kr9POSo9TzMzfpnYg1ST2r17JRIS5jdtrTar6lchGutvSWPyakFy8PsogWfiVyE65iM2VvymJxaxgSPhfddez60C1gAZhePjNnNw28IADCf1v4fAAAAAAAAAAAAAAAA5X4BBpRV/Q==
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="175" height="34">
+  <data encoding="base64" compression="zlib">
+   eJzt2NtKw0AUheFY9UJQL5SCRIJ4od6pr6B4qOdn8vAM+rpOIMU4TiaTOSTu5P9gYUk72912EcEsG6dNlS1LtodbLdiqypol65HPpZ6F34qW5w962SKNuUNinos5q6ie26uiP15G8vcTiu7GOxdzVlN369fKSP5+Qp2qnFlyPtxqwY5UjrXUv/eTyOdizioy8312rl2bcnen5DDRuX1DQndou6c03Vu67AI5Una3/jhGd3112QVypOruULNM9K7S3XGgu/9bXkWCvv+mja27u44xuVK5jriL7+zQPe5VHgLO++7i092Q9zq27u44xuRG5Va75tMD0xnT7K6v1TXdkx9Vnjx2NHHdpeTTXdv8th3p7o+Fyp12zaUHOtMZffZlh9c2aerus8qLx44mrruUfLprm9+2I921c+lB25mNyPOX8oazLvNCfm9qK9XPth3prkzle8izv/fe2TDrDILuypRbMsv66bDrZ53qc5fy/xdXF44Zu7K7Pt2SEIwb3UUfXlXeIs+ku0jls/b4XeUj8ny6C6noLqSiu5CK7kIqugup6C6koruQiu5CKroLAOl9Db0AAAAAAAAT9Q2172VM
+  </data>
+ </layer>
+ <layer name="Tile Layer 4" width="175" height="34">
+  <data encoding="base64" compression="zlib">
+   eJzt1EkKwkAQBdDsHdZiFE/gcFuva7IISDDYHSsksd+Dv2mophafqirWZNtkl5B90FzkDpTt3KR+S+vQS/t+CZqL3IGydb3pOtKpexnqbu5c5A6UrX/zhvLt7qbORe5A2W5N7gl5BM1F7gCbxLeouVQ5f029C8t0SnyLmkuV89fUu7BM/9rda9QiLFZKB58j536R0z09LdPYm+XWMbexfdNT4JPj3AsAAAAAAAAAAAAAAAAAAMAKvADNMxWI
+  </data>
+ </layer>
+</map>
