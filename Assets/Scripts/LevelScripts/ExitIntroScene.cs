@@ -1,19 +1,32 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ExitIntroScene : MonoBehaviour {
+public class ExitIntroScene : MonoBehaviour
+{
+
+    AudioSource myAudio;
+    public float delayAudio = 0;
+
+	void Start()
+    {
+		StartCoroutine (EndIntro());
+        myAudio = GetComponent<AudioSource>();
+        myAudio.SetScheduledStartTime((double)delayAudio);
+        myAudio.Play();
+    }
 
 	public Animator anim;
 	public float timer;
 	public float pauseTimer;
 
-	void Start(){
+	/*void Start(){
 		StartCoroutine (EndIntro());
 		//bkgEnd.GetComponent<SpriteRenderer>().enabled = false;
 		//anim = GetComponent<Animator> ();
-	}
+	}*/
 
-	IEnumerator EndIntro(){
+    IEnumerator EndIntro()
+    {
 		print ("Intro Starts");
 		yield return new WaitForSeconds (timer);
 		anim.enabled = false;
