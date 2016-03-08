@@ -1,5 +1,7 @@
 Base path: C:/Program Files/Unity/Editor/Data
-Pipe name: \\.\pipe\UnityShaderCompiler-64bit-1-9632
+<<<<<<< HEAD
+Pipe name: \\.\pipe\UnityShaderCompiler-64bit-1-1640
+=======
+Pipe name: \\.\pipe\UnityShaderCompiler-64bit-1-2224
+>>>>>>> refs/remotes/origin/FixingAnimations
 Cmd: getPlatforms
-Cmd: preprocess
-  insize=2850 outsize=847 ok=1
