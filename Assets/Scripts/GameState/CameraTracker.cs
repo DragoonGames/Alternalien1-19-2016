@@ -6,9 +6,11 @@ public class CameraTracker : MonoBehaviour {
 	//How far char can move away from camera before it follows
 	public float xCharRange = 1.0f;
 	public float yCharRange = 1.0f;
-	//smothing of camera movement
+
+	//smoothing of camera movement
 	public float xTrackSmooth = 10.0f;
 	public float yTrackSmooth = 10.0f;
+
 	//Boundaries our camera can move in X axis
 	public Vector2 maxXLevel;
 	public Vector2 minXLevel;
