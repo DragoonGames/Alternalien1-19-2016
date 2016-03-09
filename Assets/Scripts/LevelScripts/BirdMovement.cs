@@ -7,9 +7,7 @@ public class BirdMovement : MonoBehaviour
     public float xMaxClamp;
     Transform bird;                 //Get bird component so we can rotate
     public float speed;             //Speed at which bird moves
-    public Transform eggObject;     //Object bird drops
-    public float eggSpeed;          //speed of object dropped
-
+    public Rigidbody2D eggObject;     //Object bird drops
 
     //public float maxSpeed = 100f;
     public float xTrackSmooth = 10.0f;
@@ -111,27 +109,25 @@ public class BirdMovement : MonoBehaviour
             //Player hits target range
             dropTest = true;
         }
+        else
+            dropTest = false;
     }
     IEnumerator DropEgg()
     {
-        if (dropTest)
+        dropTest = false;
+
+        print("Drop Egg");
+        Rigidbody2D eggClone;
+        eggClone = Instantiate(eggObject, transform.position, transform.rotation) as Rigidbody2D;
+        if (isFacingLeft)
         {
-            while (0 == count || count == 1)
-            {
-                print("Drop Egg");
-                Rigidbody2D eggClone;
-                eggClone = Instantiate(eggObject, transform.position, transform.rotation) as Rigidbody2D;
-                eggClone.velocity = transform.TransformDirection(Vector3.left * eggSpeed + Vector3.down * eggSpeed);
-                eggClone.gravityScale = 5;
-                count--;
-                //Destroy(eggClone.gameObject, 15.0f);
-                break;
-                yield return new WaitForSeconds(eggTimer);
-                count++;
-                break;
-            }
-            dropTest = false;
-            
+            eggClone.velocity = transform.TransformDirection(Vector3.left * speed + Vector3.down * speed);
         }
+        else if (!isFacingLeft)
+        {
+            eggClone.velocity = transform.TransformDirection(Vector3.right * speed + Vector3.down * speed);
+
+        }
+        yield return new WaitForSeconds(eggTimer);
     }
 }
