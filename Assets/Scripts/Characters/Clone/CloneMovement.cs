@@ -3,48 +3,89 @@ using System.Collections;
 
 public class CloneMovement : MonoBehaviour {
 
+    //Determine direction Clone is facing. Also set the bool in anim controller
     bool isFacingRight = true;
     bool isFacingLeft = false;
 
+    //Standard speed set here, can be modified if need be
     public float maxSpeed = 100f;
     public float jumpSpeed = 15000f;
+
+    //Handled by the control script to detemine active alien
     private bool isActive = false;
+    //Jump boolean
     bool isGrounded = true;
 
+    //Delay to jump again
     private float jumpRate = 0.25F;
     float nextJump = 0.75F;
 
+    //Access the animation controller
     public Animator anim;
+
+    //Create an array of objects that Clone can clone into
     public GameObject[] itemTransform;
+    //store the sprite of the object within range
     public Sprite CloneCopyCat;
+    //Copy of the original clone so to undo the clone process
     public Sprite OriginalClone;
+    //Require the renderer to change the sprites
     private SpriteRenderer spriteRenderer;
+    //Call the audiosource to change/play audio
     AudioSource myAudioSource;
 
+    //Stores the orinal collider by getting it in Start()
     private BoxCollider2D originalCollider;
+    //Stores the size of the collider by getting the originalCollider
     private Vector3 storedColliderSize;
+    //Stores the offset of the collider by getting the originalCollider
     private Vector2 storedColliderOffset;
+    //Stores the original scale of Clone
 	private Vector3 originalScale;
+    //Gets and stores the scale of the object within range
 	private Vector3 itemTransformScale;
+    //Stores the audio clip for the keycard sound
     public AudioClip keycardPickup;
+    //Stores the rigidbody by getting the initial in Start()
     Rigidbody2D myRigid;
+    //Gets and Stores the rigidbody within range
     Rigidbody2D itemRigid;
 
+    //Size to determine range of objects to clone
     public float inRange;
+    //Is Clone using his power?
     bool isUsingPower = false;
+    //Yes, Clone is using power
     private bool triggered;
+    //No, Clone is not using power
     private bool released;
+    //Index of object in array to clone into. Needs to be global and not local
     int index = 0;
 
+    //Called 
     void Start()
     {
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+         * Gets the animator controller from component list      *
+         * if no controller is present, no animation will play.  *
+         * Could consider just writing it in if there are none   *
+         * present in case a designer deletes it accidently      *
+         *                                                       *
+         * Also set the initial values for the controller by     *
+         * using the SetBool and the SetFloat for the different  *
+         * states and the speed, respectively                    *
+         * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
         anim = GetComponent<Animator>();
         anim.SetBool("isGrounded", isGrounded);
         anim.SetBool("isFacingRight", isFacingRight);
         anim.SetBool("isUsingPower", isUsingPower);
 		inRange = 10 * transform.localScale.x;
+
+        //Set the initial trigger to false
         triggered = false;
 
+        /* Obtain all of the original clone objects as listed above
+         * This will be used for when Clone deactivates his power */
         spriteRenderer = GetComponent<SpriteRenderer>();
 		originalScale = transform.localScale;
         originalCollider = gameObject.GetComponent<BoxCollider2D>();
@@ -52,32 +93,47 @@ public class CloneMovement : MonoBehaviour {
         storedColliderOffset = GetComponent<BoxCollider2D>().offset;
         OriginalClone = transform.GetComponent<SpriteRenderer>().sprite;
 
+        /* Populates the array of all gameobjects that Lenny can use to levitate
+         * since they are in the same levels together */
         itemTransform = GameObject.FindGameObjectsWithTag("Lenny");
+        //Instantiate the audio source
         myAudioSource = GetComponent<AudioSource>();
+        //Grab the original rigidbody
         myRigid = GetComponent<Rigidbody2D>();
     }
+    /* IEnumerator used a timer essentially to return a value or to kill a 
+     * method's resources after a certain amount of time to reduce CPU load */
     IEnumerator Jump()
     {
+        //Is jumping
         isGrounded = false;
+        //Set animation bool to true
         anim.SetBool("isGrounded", isGrounded);
+        //Actual jump mechanic
         GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpSpeed);
 
+        //Delay for next jump
         yield return new WaitForSeconds(nextJump);
 
+        //Is on the ground
         isGrounded = true;
+        //Set the bool back to false
         anim.SetBool("isGrounded", isGrounded);
     }
+    //Primary source for left/right
     void CheckDirection(float moveSpeed)
     {
         if (isFacingRight)
         {
+            //Set the animation controller to face right
             anim.SetBool("isFacingRight", isFacingRight);
 
+            //Turning Left
             if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
             {
                 isFacingLeft = true;
                 isFacingRight = false;
-                //Start of Changing Sprites
+                //Set speed to indicate left movement
                 anim.SetFloat("speed", moveSpeed);
                 anim.SetBool("isFacingRight", isFacingRight);
             }
@@ -85,28 +141,36 @@ public class CloneMovement : MonoBehaviour {
         }
         if (isFacingLeft)
         {
+            //Set the animation controller to face left
+            //Don't be distracted by the facing right below
             anim.SetBool("isFacingRight", isFacingRight);
 
+            //Turning Right
             if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
             {
                 isFacingLeft = false;
                 isFacingRight = true;
-                //Start of Changing Sprites
+                //Set speed to indicate left movement
                 anim.SetFloat("speed", moveSpeed);
                 anim.SetBool("isFacingRight", isFacingRight);
             }
         }
     }
+    //Uodate is called every frame
     void Update()
     {
+        //If active alien
         if (isActive)
         {
-            //CheckDirection(speed);
+            //Movement mechanic
             float move = Input.GetAxis("Horizontal");
             float speed = (move * maxSpeed);
+            //Set speed to indicate running
             anim.SetFloat("speed", speed);
+            //Actual movement mechanic
             GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
 
+            //Check directions in case need to turn
             CheckDirection(speed);
             //Check for One Jump
             //Calls jump if button pressed, and is Grounded
@@ -115,27 +179,28 @@ public class CloneMovement : MonoBehaviour {
                 StartCoroutine(Jump());
             }
             CheckDirection(speed);
+            //Is using power and turns it off
             if (triggered && Input.GetKeyDown(KeyCode.C))
             {
                 isUsingPower = false;
                 Released();
             }
-            /*if (Input.GetKeyDown(KeyCode.F) && !triggered)
-            {
-                isUsingPower = true;
-                anim.SetBool("isUsingPower", isUsingPower);
-                triggered = true;
-            }*/
+            //If not using power
             if (!triggered)
             {
+                //For loop to go through all objects
                 for (int i = 0; i < itemTransform.Length; i++)
                 {
+                    //Check distance between clone and objects to see if within range
                     if (Vector3.Distance(itemTransform[i].transform.position, transform.position) < inRange)
                     {
+                        //Actual key to activate power
                         if (Input.GetKeyDown(KeyCode.F))
                         {
                             //isUsingPower = true;
                             //anim.SetBool("isUsingPower", isUsingPower);
+
+                            //Changes clones components to that of its copy
                             CloneCopyCat = itemTransform[index].GetComponent<SpriteRenderer>().sprite;
 							itemTransformScale = itemTransform[index].GetComponent<Transform>().localScale;
                             if (!itemTransform[index].GetComponent<Rigidbody2D>())
@@ -146,7 +211,7 @@ public class CloneMovement : MonoBehaviour {
                             {
                                 itemRigid = itemTransform[index].GetComponent<Rigidbody2D>();
                             }
-                            //Destroy(originalCollider);
+                            //Grabs the index of the object to ensure success
                             index = i;
                             Trigger();
                         }
@@ -155,6 +220,7 @@ public class CloneMovement : MonoBehaviour {
             }
         }
     }
+    //Actual method to start the changing of sprites
     void Trigger()
     {
         triggered = true;
@@ -173,6 +239,8 @@ public class CloneMovement : MonoBehaviour {
         //gameObject.GetComponent<BoxCollider2D>() = itemTransform[index].GetComponent<Collider2D>();
         //gameObject.AddComponent<BoxCollider2D>(clonedCollider);
     }
+
+    //Release object and return to normal state
     void Released()
     {
         triggered = false;
