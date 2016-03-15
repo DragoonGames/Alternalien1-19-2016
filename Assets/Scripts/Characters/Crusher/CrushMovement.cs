@@ -21,6 +21,7 @@ public class CrushMovement : MonoBehaviour {
     AudioSource myAudioSource;
     public AudioClip keycardPickup;
     Rigidbody2D myRigid;
+    private ControlScript controlScript;
 
     void Start(){
         anim = GetComponent<Animator>();
@@ -29,6 +30,7 @@ public class CrushMovement : MonoBehaviour {
         anim.SetBool("IsFacingRight", isFacingRight);
         myAudioSource = GetComponent<AudioSource>();
         myRigid = GetComponent<Rigidbody2D>();
+        controlScript = Camera.main.GetComponent<ControlScript>();
     }
 	IEnumerator Jump()
 	{
@@ -128,6 +130,7 @@ public class CrushMovement : MonoBehaviour {
     {
         if (c.gameObject.tag == "isCardKey")
         {
+            controlScript.cardCount++;
             Destroy(c.gameObject);
             myAudioSource.Stop();
             myAudioSource.clip = keycardPickup;

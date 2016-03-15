@@ -12,6 +12,7 @@ public class ControlScript : MonoBehaviour {
 	private int alienCap;
 	public GameObject exitGateway;
 	public bool firstLevel;
+    private int totalCards;
 
     void SetActiveAlien() {
 		foreach(GameObject alien in aliens)
@@ -25,6 +26,7 @@ public class ControlScript : MonoBehaviour {
 		alienCap = aliens.Length - lockedAliens;
 		SetActiveAlien ();
 		target = firstTarget;
+        totalCards = accessCards.Length;
         //accessCardsList.AddRange(accessCards);
 	}
 	
@@ -45,7 +47,7 @@ public class ControlScript : MonoBehaviour {
 		}
         UnlockExit();
 	}
-
+    public int cardCount = 0;
 	void UnlockExit()
 	{
         if (accessCardsToGet == 0)
@@ -62,6 +64,13 @@ public class ControlScript : MonoBehaviour {
             }
         }
 		
+    }
+
+    //public string text = "";
+    public GUISkin mySkin;
+    void OnGUI() {
+        GUI.skin = mySkin;
+        GUI.Box(new Rect(Screen.width / 8 - 100, Screen.height / 8 -20, 300, 35), "Key Cards: " + cardCount + " out of " + totalCards);
     }
 	void UnlockAliens() {
 		alienCap = aliens.Length;
