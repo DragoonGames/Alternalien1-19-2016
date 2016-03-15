@@ -126,6 +126,7 @@
     <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\TiledInitialShaderProperties.cs" />
     <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\TiledMap.cs" />
     <Compile Include="Assets\Tiled2Unity\Tools\ReplaceGameObjects.cs" />
+    <Compile Include="Assets\WallSpikes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Tiled2Unity\Imported\Artic Level design 1.tiled2unity.xml" />
