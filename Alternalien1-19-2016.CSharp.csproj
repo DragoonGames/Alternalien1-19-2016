@@ -103,6 +103,7 @@
     <Compile Include="Assets\Scripts\GameState\SmoothFollowCSharp.cs" />
     <Compile Include="Assets\Scripts\GameState\WinScript.cs" />
     <Compile Include="Assets\Scripts\GameState\mainGUI.cs" />
+    <Compile Include="Assets\Scripts\GameState\signScript.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\AddAlien.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Angry_Sun.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\BirdMovement.cs" />
