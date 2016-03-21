@@ -10,6 +10,12 @@ public class mummyMovement : MonoBehaviour {
 
     //public float maxSpeed = 100f;
     public float xTrackSmooth = 10.0f;
+    bool attack;
+
+    bool Attack {
+        get { return attack; }
+        set { attack = value; }
+    }
 
     Rigidbody2D myRigid;
     bool isFacingLeft;
@@ -65,12 +71,26 @@ public class mummyMovement : MonoBehaviour {
             isFacingLeft = true;
         }
     }
-    void OnTriggerEnter2D(Collider2D c)
+    void OnTriggerStay2D(Collider2D other)
     {
-        if (c.gameObject.tag == "Player")
+        if (other.gameObject.tag == "safeZone")
         {
-            //Player hits target range
+            Attack = false;
+        }
+    }
 
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "safeZone")
+        {
+            Attack = true;
+        }
+    }
+    void OnCollisionEnter2D(Collision2D col) {
+        if (col.gameObject.tag == "Player") {
+            if (Attack) {
+                destroy(col.gameObject);
+            }
         }
     }
 }
