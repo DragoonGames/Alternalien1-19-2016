@@ -89,7 +89,7 @@ public class mummyMovement : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D col) {
         if (col.gameObject.tag == "Player") {
             if (Attack) {
-                destroy(col.gameObject);
+                Destroy(col.gameObject);
             }
         }
     }

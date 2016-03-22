@@ -207,34 +207,42 @@ public class LennyMovement : MonoBehaviour {
      * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Wind")         //This signals that we are on a wind vortex
+        if (other.gameObject.tag == "UpWind")         //This signals that we are on a wind vortex
         {
+            myRigid.AddForce(Vector2.up * maxSpeed * Time.deltaTime * (transform.localScale.x / 2));
             myRigid.gravityScale = 0;
-            if (other.gameObject.GetComponent<CapsuleDirection>().vertical)
+            /*if (other.gameObject.GetComponent<CapsuleDirection>().vertical)
             {
                 myRigid.AddForce(Vector2.up * maxSpeed * Time.deltaTime * (transform.localScale.x / 2));
-
-            }
-            else if (!other.gameObject.GetComponent<CapsuleDirection>().vertical)
+            }*/
+        }
+        else if (other.gameObject.tag == "LeftWind")
+        {
+            myRigid.AddForce(Vector2.left * maxSpeed * transform.localScale.y);
+            if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                myRigid.AddForce(Vector2.left * maxSpeed * transform.localScale.y);
-                if (myRigid.gravityScale == 0)
-                {
-                    myRigid.constraints = RigidbodyConstraints2D.FreezePositionY;
-                }
+                myRigid.constraints = RigidbodyConstraints2D.None;
             }
+            if (myRigid.gravityScale == 0)
+            {
+                myRigid.constraints = RigidbodyConstraints2D.FreezePositionY;
 
+            }
         }
     }
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Wind")         //This signals that we are on a wind vortex
+        if (other.gameObject.tag == "UpWind")         //This signals that we are on a wind vortex
         {
             myRigid.gravityScale = gravityScale;
         }
-        if (myRigid.gravityScale != 0)
+        if (other.gameObject.tag == "LeftWind")
         {
             myRigid.constraints = RigidbodyConstraints2D.FreezeRotation;
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                myRigid.gravityScale = gravityScale;
+            }
         }
     }
     void SetActive()
