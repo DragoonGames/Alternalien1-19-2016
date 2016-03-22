@@ -10,6 +10,7 @@ public class SandyMovement : MonoBehaviour {
 
     public float maxSpeed = 100f;
     public float jumpSpeed = 11500f;
+    public float gravityScale = 50.0f;
     private bool isActive = false;
     bool isGrounded = true;
 
@@ -45,6 +46,7 @@ public class SandyMovement : MonoBehaviour {
         Time.timeScale = 1;
 		pistons = GameObject.FindGameObjectsWithTag ("Piston");
         myRigid = GetComponent<Rigidbody2D>();
+        gravityScale = myRigid.gravityScale;
     }
     /*private void AnimationBoolControl(float speed, bool facingRight, bool power, bool ground)
     {
@@ -182,6 +184,47 @@ public class SandyMovement : MonoBehaviour {
 			{
 				GameObject.Find("Sand_Bridge").GetComponent<DesertDrawBridge>().count++;
 			}
+        }
+    }
+    /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+     *                                                                               *
+     *   This requires the character to hit the trigger that has to have a tag of    *
+     *   "Wind" in order for it to actually trigger the add force. When the player   *
+     *   hits the horizontal trigger, I had to actually stop the y position so the   *
+     *   player won't be able to go above the horizontal trigger, so spikes there    *
+     *   would be completely useless.                                                *
+     *                                                                               *
+     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Wind")         //This signals that we are on a wind vortex
+        {
+            myRigid.gravityScale = 0;
+            if (other.gameObject.GetComponent<CapsuleDirection>().vertical)
+            {
+                myRigid.AddForce(Vector2.up * maxSpeed * Time.deltaTime * (transform.localScale.x / 2));
+
+            }
+            else if (!other.gameObject.GetComponent<CapsuleDirection>().vertical)
+            {
+                myRigid.AddForce(Vector2.left * maxSpeed * transform.localScale.y);
+                if (myRigid.gravityScale == 0)
+                {
+                    myRigid.constraints = RigidbodyConstraints2D.FreezePositionY;
+                }
+            }
+
+        }
+    }
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Wind")         //This signals that we are on a wind vortex
+        {
+            myRigid.gravityScale = gravityScale;
+        }
+        if (myRigid.gravityScale != 0)
+        {
+            myRigid.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
     }
     void SetActive()

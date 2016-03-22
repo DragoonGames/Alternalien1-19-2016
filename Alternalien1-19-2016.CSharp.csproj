@@ -106,6 +106,7 @@
     <Compile Include="Assets\Scripts\LevelScripts\Angry_Sun.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\BirdMovement.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\BridgeMaking.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\CapsuleDirection.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Credits.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\DeathScript.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\DesertDrawBridge.cs" />

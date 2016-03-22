@@ -6,6 +6,8 @@ public class WallSpikes : MonoBehaviour {
     public float timer          = 0.5f;
     public float speed          = 15.0f;
     public float maxDistance    = 10.0f;
+    public float mass           = 0.175f;        //Determines how fast the object moves, use in concurrent with Gravity Scale
+    public float gravityScale   = 0;
 
     private bool trap           = false;
     private Vector3 originalPos;
@@ -36,6 +38,9 @@ public class WallSpikes : MonoBehaviour {
             gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.down * speed * transform.localScale.x);
             //gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.down * speed * transform.localScale.x);
             myRigid = gameObject.GetComponent<Rigidbody2D>();
+            myRigid.mass = mass;
+            myRigid.gravityScale = gravityScale;
+            //myRigid.constraints = RigidbodyConstraints2D.FreezePositionX;
         }
         else
         {
@@ -47,6 +52,9 @@ public class WallSpikes : MonoBehaviour {
             //gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.right * speed * transform.localScale.x);
             gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.right * speed * transform.localScale.x);
             myRigid = gameObject.GetComponent<Rigidbody2D>();
+            myRigid.mass = mass;
+            myRigid.gravityScale = gravityScale;
+            //myRigid.constraints = RigidbodyConstraints2D.FreezePositionY;
         }
     }
     void OnTriggerEnter2D(Collider2D other)
