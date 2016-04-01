@@ -3,117 +3,73 @@ using System.Collections;
 
 public class LightBeams : MonoBehaviour
 {
-    public int laserDistance = 100; //max raycasting distance
-    public int laserLimit = 10; //the laser can be reflected this many times
-    public LineRenderer laserRenderer; //the line renderer
+    public Transform origin;            //Use this to grab the initial light renderer to change the position size and add one based on current position
+    public Transform lastNode;
+    public Transform nextNode;
+    LineRenderer lineRenderer;
+    public int mirrorPosition;          //Must be in concurrent with light direction otherwise lights don't work
 
-    // Use this for initialization
-    void Start ()
+
+    int lightPositions;
+    float counter;
+    float dist;
+
+    public bool setLaser = false;
+    public float lineDrawSpeed = 6.0f;
+    public int maxVertices;              //Subtract the current vertex from the max to set all further positions
+    
+    void Start()
     {
-        laserRenderer = GetComponent<LineRenderer>();
-        DrawLaser();
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-	
-	}
-    void DrawLaser()
-    {
-        int laserReflected = 1; //How many times it got reflected
-        int vertexCounter = 1; //How many line segments are there
-
-        bool loopActive = true; //Is the reflecting loop active?
-        Vector2 laserDirection = transform.right; //direction of the next laser
-        Vector2 lastLaserPosition = transform.position; //origin of the next laser
-
-        laserRenderer.SetVertexCount(1);
-        laserRenderer.SetPosition(0, transform.position);
-
-        while (loopActive)
+        print("Mirror position is: " + mirrorPosition);
+        lightPositions = mirrorPosition;
+        if (origin)
         {
-            RaycastHit2D hit = Physics2D.Raycast(lastLaserPosition, laserDirection, laserDistance);
-            {
-                print(hit);
-                laserReflected++;
-                vertexCounter += 3;
-                laserRenderer.SetVertexCount(vertexCounter);
-                laserRenderer.SetPosition(vertexCounter - 3, Vector3.MoveTowards(hit.point, lastLaserPosition, 0.01f));
-                laserRenderer.SetPosition(vertexCounter - 2, hit.point);
-                laserRenderer.SetPosition(vertexCounter - 1, hit.point);
-                lastLaserPosition = hit.point;
-                laserDirection = Vector3.Reflect(laserDirection, hit.normal);
-            }
-            /*else {
-                laserReflected++;
-                vertexCounter++;
-                laserRenderer.SetVertexCount(vertexCounter);
-                laserRenderer.SetPosition(vertexCounter - 1, lastLaserPosition + (laserDirection.normalized * laserDistance));
-
-                loopActive = false;
-            }*/
-            if (laserReflected > laserLimit)
-                loopActive = false;
+            lineRenderer = origin.GetComponent<LineRenderer>();
+        }
+        if (lastNode && nextNode)
+        {
+            dist = Vector2.Distance(lastNode.position, nextNode.position);
+        }
+        else if (lastNode && !nextNode)     //Last Node
+        {
+            dist = Vector2.Distance(lastNode.position, transform.position);
+        }
+        else                //Origin
+        {
+            lineRenderer = GetComponent<LineRenderer>();
+            //lineRenderer.SetPosition(mirrorPosition, transform.position);
         }
     }
-    /*IEnumerator FireMahLazer()
+    void Update()
     {
-        //Debug.Log("Running");
-        mLineRenderer.enabled = true;
-        int laserReflected = 1; //How many times it got reflected
-        int vertexCounter = 1; //How many line segments are there
-        bool loopActive = true; //Is the reflecting loop active?
-
-        Vector3 laserDirection = transform.forward; //direction of the next laser
-        Vector3 lastLaserPosition = transform.localPosition; //origin of the next laser
-
-        mLineRenderer.SetVertexCount(1);
-        mLineRenderer.SetPosition(0, transform.position);
-        RaycastHit hit;
-
-        while (loopActive)
+        if (setLaser)
         {
-
-            if (Physics.Raycast(lastLaserPosition, laserDirection, out hit, laserDistance) && hit.transform.gameObject.tag == bounceTag)
+            if (counter < dist)
             {
+                counter += .1f / lineDrawSpeed;
 
-                Debug.Log("Bounce");
-                laserReflected++;
-                vertexCounter += 3;
-                mLineRenderer.SetVertexCount(vertexCounter);
-                mLineRenderer.SetPosition(vertexCounter - 3, Vector3.MoveTowards(hit.point, lastLaserPosition, 0.01f));
-                mLineRenderer.SetPosition(vertexCounter - 2, hit.point);
-                mLineRenderer.SetPosition(vertexCounter - 1, hit.point);
-                mLineRenderer.SetWidth(.1f, .1f);
-                lastLaserPosition = hit.point;
-                laserDirection = Vector3.Reflect(laserDirection, hit.normal);
+                float x = Mathf.Lerp(0, dist, counter);
+                print(Mathf.Lerp(0, dist, counter));
+                //Vector3 pointA = lastNode.position;
+                //Vector3 pointB = nextNode.position;
+
+                //Vector3 pointAlongLine = x * Vector3.Normalize(pointB - pointA) + pointA;
+
+                lineRenderer.SetPosition(mirrorPosition, new Vector3((transform.position.x - origin.position.x), (transform.position.y - origin.position.y), 0));
+                for (int i = ++mirrorPosition; i < maxVertices; i++)
+                {
+                    lineRenderer.SetPosition(i, new Vector3((transform.position.x - origin.position.x), (transform.position.y - origin.position.y), 0));
+                }
             }
-            else {
-
-                Debug.Log("No Bounce");
-                laserReflected++;
-                vertexCounter++;
-                mLineRenderer.SetVertexCount(vertexCounter);
-                Vector3 lastPos = lastLaserPosition + (laserDirection.normalized * laserDistance);
-                Debug.Log("InitialPos " + lastLaserPosition + " Last Pos" + lastPos);
-                mLineRenderer.SetPosition(vertexCounter - 1, lastLaserPosition + (laserDirection.normalized * laserDistance));
-
-                loopActive = false;
-            }
-            if (laserReflected > maxBounce)
-                loopActive = false;
         }
-
-        if (Input.GetKey("space") && timer < 2)
+        setLaser = false;
+    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Mirror")
         {
-            yield return new WaitForEndOfFrame();
-            timer += Time.deltaTime;
-            StartCoroutine("FireMahLazer");
+            setLaser = true;
+            //lineRenderer.SetPosition(lightPositions, transform.position);
         }
-        else {
-            yield return null;
-            mLineRenderer.enabled = false;
-        }
-    }*/
+    }
 }
