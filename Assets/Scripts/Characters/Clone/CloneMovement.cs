@@ -10,6 +10,7 @@ public class CloneMovement : MonoBehaviour {
     //Standard speed set here, can be modified if need be
     public float maxSpeed = 100f;
     public float jumpSpeed = 15000f;
+    float gravityScale = 50.0f;
 
     //Handled by the control script to detemine active alien
     private bool isActive = false;
@@ -100,6 +101,7 @@ public class CloneMovement : MonoBehaviour {
         myAudioSource = GetComponent<AudioSource>();
         //Grab the original rigidbody
         myRigid = GetComponent<Rigidbody2D>();
+        gravityScale = myRigid.gravityScale;
     }
     /* IEnumerator used a timer essentially to return a value or to kill a 
      * method's resources after a certain amount of time to reduce CPU load */
@@ -162,6 +164,7 @@ public class CloneMovement : MonoBehaviour {
         //If active alien
         if (isActive)
         {
+            print(myRigid.gravityScale);
             //Movement mechanic
             float move = Input.GetAxis("Horizontal");
             float speed = (move * maxSpeed);
@@ -179,6 +182,8 @@ public class CloneMovement : MonoBehaviour {
                 StartCoroutine(Jump());
             }
             CheckDirection(speed);
+
+            
             //Is using power and turns it off
             if (triggered && Input.GetKeyDown(KeyCode.C))
             {
@@ -274,10 +279,60 @@ public class CloneMovement : MonoBehaviour {
             }
         }
     }
+
+    /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+     *                                                                               *
+     *   This requires the character to hit the trigger that has to have a tag of    *
+     *   "Wind" in order for it to actually trigger the add force. When the player   *
+     *   hits the horizontal trigger, I had to actually stop the y position so the   *
+     *   player won't be able to go above the horizontal trigger, so spikes there    *
+     *   would be completely useless.                                                *
+     *                                                                               *
+     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "UpWind")         //This signals that we are on a wind vortex
+        {
+            myRigid.AddForce(Vector2.up * maxSpeed * Time.deltaTime * (transform.localScale.x / 2));
+            myRigid.gravityScale = 0;
+            /*if (other.gameObject.GetComponent<CapsuleDirection>().vertical)
+            {
+                myRigid.AddForce(Vector2.up * maxSpeed * Time.deltaTime * (transform.localScale.x / 2));
+            }*/
+        }
+        else if (other.gameObject.tag == "LeftWind")
+        {
+            myRigid.AddForce(Vector2.left * maxSpeed * transform.localScale.y);
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                myRigid.constraints = RigidbodyConstraints2D.None;
+            }
+            if (myRigid.gravityScale == 0)
+            {
+                myRigid.constraints = RigidbodyConstraints2D.FreezePositionY;
+
+            }
+        }
+    }
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "UpWind")         //This signals that we are on a wind vortex
+        {
+            myRigid.gravityScale = gravityScale;
+        }
+        if (other.gameObject.tag == "LeftWind")
+        {
+            myRigid.constraints = RigidbodyConstraints2D.FreezeRotation;
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                myRigid.gravityScale = gravityScale;
+            }
+        }
+    }
     void SetActive()
     {
         isActive = true;
-        myRigid.constraints = RigidbodyConstraints2D.FreezeRotation;
+        //myRigid.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
     void SetInactive()
     {
