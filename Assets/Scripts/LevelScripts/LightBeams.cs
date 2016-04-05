@@ -8,7 +8,7 @@ public class LightBeams : MonoBehaviour
     public Transform nextNode;          
     LineRenderer lineRenderer;          //Component that is grabbed from the origin which is the only GO that can have the Line Renderer component
     public int mirrorPosition;          //Must be in concurrent with light direction otherwise lights don't work
-
+    Rigidbody2D mirrorRigid;
 
     int lightPositions;                 //Used as the index for the array of mirrors in the level
     float counter;                      //Part of the animation which doesnt work as of yet (04/04/2016)
@@ -20,6 +20,7 @@ public class LightBeams : MonoBehaviour
      *  place else the line renderer gets messed up      *
      *                                                   *
      * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
     public bool setLaser = false;       //Turns the laser on when the mirror is placed correctly in the spot designated for it 
     public float lineDrawSpeed = 6.0f;
 
@@ -81,11 +82,15 @@ public class LightBeams : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other)
     {
+
         //Collides with the mirror object. Set it up so that it doesn't move afterwards.
         print(other.name);
         if (other.gameObject.tag == "Mirror")
         {
             setLaser = true;
+            //Prevent the mirror from being moved again.
+            mirrorRigid = other.GetComponent<Rigidbody2D>();
+            mirrorRigid.constraints = RigidbodyConstraints2D.FreezeAll;
             //lineRenderer.SetPosition(lightPositions, transform.position);
         }
     }
