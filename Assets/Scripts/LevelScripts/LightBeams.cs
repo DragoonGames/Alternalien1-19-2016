@@ -8,6 +8,7 @@ public class LightBeams : MonoBehaviour
     public Transform nextNode;          
     LineRenderer lineRenderer;          //Component that is grabbed from the origin which is the only GO that can have the Line Renderer component
     public int mirrorPosition;          //Must be in concurrent with light direction otherwise lights don't work
+    public GameObject[] mirrors;
     Rigidbody2D mirrorRigid;
 
     int lightPositions;                 //Used as the index for the array of mirrors in the level
@@ -34,10 +35,12 @@ public class LightBeams : MonoBehaviour
      *  go overboard with the number of vertices         *
      *                                                   *
      * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
     public int maxVertices;              //Subtract the current vertex from the max to set all further positions
     
     void Start()
     {
+        //mirrors = GameObject.FindGameObjectsWithTag("Mirror");
         lightPositions = mirrorPosition;
         if (origin)
         {
@@ -56,6 +59,11 @@ public class LightBeams : MonoBehaviour
             lineRenderer = GetComponent<LineRenderer>();
             //lineRenderer.SetPosition(mirrorPosition, transform.position);
         }
+        foreach(GameObject go in mirrors)
+        {
+            go.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+        mirrors[0].GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
     }
     void Update()
     {
@@ -74,6 +82,7 @@ public class LightBeams : MonoBehaviour
                 for (int i = ++mirrorPosition; i < maxVertices; i++)
                 {
                     lineRenderer.SetPosition(i, new Vector3((transform.position.x - origin.position.x), (transform.position.y - origin.position.y), 0));
+                    mirrors[++i].GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
                 }
             }
         }

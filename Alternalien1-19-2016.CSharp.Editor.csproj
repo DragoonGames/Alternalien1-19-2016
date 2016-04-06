@@ -133,6 +133,7 @@
   <ItemGroup>
     <None Include="Assets\Tiled2Unity\Imported\Artic Level design 1.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\Imported\Artic_Wasteland.tiled2unity.xml" />
+    <None Include="Assets\Tiled2Unity\Imported\Dusty_Themepark.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\Imported\Final Arctic Level (Ezlo) 2.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\Imported\Final Arctic Level (Ezlo).tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\Imported\Heatstroke_Plaza.tiled2unity.xml" />

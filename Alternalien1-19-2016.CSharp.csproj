@@ -72,7 +72,6 @@
     <Compile Include="Assets\Elevator\Elevator.cs" />
     <Compile Include="Assets\Elevator\ElevatorTrigger.cs" />
     <Compile Include="Assets\GUISkin\GUISample.cs" />
-    <Compile Include="Assets\Scripts\LevelScripts\ResetMirrors.cs" />
     <Compile Include="Assets\Scripts\Characters\Clone\CloneMovement.cs" />
     <Compile Include="Assets\Scripts\Characters\Cloud\AddCloud.cs" />
     <Compile Include="Assets\Scripts\Characters\Cloud\CloudHit.cs" />
@@ -121,7 +120,9 @@
     <Compile Include="Assets\Scripts\LevelScripts\FallingBoulders.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\GeyserBridgeBuilding.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\LightBeams.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\LockNextMirror.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\PistonDrops.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\ResetMirrors.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\TestLightBeam.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\TextBoxVisibility.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\WallSpikes.cs" />
@@ -129,6 +130,7 @@
     <Compile Include="Assets\Scripts\LevelScripts\bossScript.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\mummyMovement.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\unfairMarioSpikes.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\TeeterTotter.cs" />
     <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\SortingLayerExposed.cs" />
     <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\TileAnimator.cs" />
     <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\TiledInitialShaderProperties.cs" />
@@ -138,6 +140,7 @@
   <ItemGroup>
     <None Include="Assets\Tiled2Unity\Imported\Artic Level design 1.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\Imported\Artic_Wasteland.tiled2unity.xml" />
+    <None Include="Assets\Tiled2Unity\Imported\Dusty_Themepark.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\Imported\Final Arctic Level (Ezlo) 2.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\Imported\Final Arctic Level (Ezlo).tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\Imported\Heatstroke_Plaza.tiled2unity.xml" />
