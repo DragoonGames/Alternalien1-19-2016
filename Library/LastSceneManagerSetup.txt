@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/TestBird.unity
+- path: Assets/Scenes/Tomb.unity
   isLoaded: 1
   isActive: 1

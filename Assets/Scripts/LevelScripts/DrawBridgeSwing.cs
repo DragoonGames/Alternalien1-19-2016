@@ -20,12 +20,7 @@ public class DrawBridgeSwing : MonoBehaviour {
 				swingDown = false;
 		} 
 
-		else if(!swingDown){
-			DbRotation -= .5f;
-			transform.rotation = Quaternion.Euler(transform.localEulerAngles.x, transform.localEulerAngles.y, DbRotation);
-			if(DbRotation <= 1 && Input.GetKey(KeyCode.J))
-				swingDown = true;
-		} 
+		
 	}
 
 
