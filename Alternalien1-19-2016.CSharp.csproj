@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Web v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>WebPlayer:6</UnityBuildTarget>
     <UnityVersion>5.3.3f1</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -69,7 +67,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\LevelScripts\BackgroundScroll.cs" />
     <Compile Include="Assets\Elevator\Elevator.cs" />
     <Compile Include="Assets\Elevator\ElevatorTrigger.cs" />
     <Compile Include="Assets\GUISkin\GUISample.cs" />
@@ -107,12 +104,14 @@
     <Compile Include="Assets\Scripts\GameState\signScript.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\AddAlien.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Angry_Sun.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\BackgroundScroll.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\BirdMovement.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\BridgeMaking.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\CapsuleDirection.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\Credits.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\DeathScript.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\DesertDrawBridge.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\DesertDrawBridge2.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\DestroyStalagmite.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\DrawBridgeSwing.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\DrawLine.cs" />
