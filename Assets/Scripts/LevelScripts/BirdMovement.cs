@@ -13,7 +13,7 @@ public class BirdMovement : MonoBehaviour
     public float xTrackSmooth = 10.0f;
 
     Rigidbody2D myRigid;
-    bool isFacingLeft;
+    public bool isFacingLeft;
     public float timer = 0.0f;
     public int count = 1;
     public float eggTimer;
@@ -46,6 +46,7 @@ public class BirdMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		print (transform.position.x);
         /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
          *                                                                                                       *
          *  This doesn't work because the values must be set in the script, so they can only have one speed for  *
@@ -73,6 +74,17 @@ public class BirdMovement : MonoBehaviour
                 //yield return null;
                 //
                 */
+		if (bird.transform.position.x <= xMinClamp)             //Change direction
+		{
+			print ("Move Right");
+			isFacingLeft = false;
+		}
+		if (bird.transform.position.x >= xMaxClamp)
+		{
+
+			print ("Move Left");
+			isFacingLeft = true;
+		}
 
         float targetX = transform.position.x;
         if ((bird.transform.position.x >= xMinClamp) && isFacingLeft)   //moving to the left
@@ -88,14 +100,6 @@ public class BirdMovement : MonoBehaviour
             //targetX = Mathf.Lerp(transform.position.x, xMaxClamp, xTrackSmooth);
             //maxSpeed *= -1;
             //isFacingLeft = true;
-        }
-        if (bird.transform.position.x <= xMinClamp)             //Change direction
-        {
-            isFacingLeft = false;
-        }
-        else if (bird.transform.position.x >= xMaxClamp)
-        {
-            isFacingLeft = true;
         }
         if (dropTest)
         {

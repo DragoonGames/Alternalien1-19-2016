@@ -6,8 +6,8 @@ public class TeeterTotter : MonoBehaviour
 {
     public float changeRotation = 45.0f;        // The rotation is changed incrementally.
     public bool swingDown = false;              // The swing starts up
-    private float maxRotation = 25;             
-    private float minRotation = -25;            // Minimum rotation needs to be negative or the swing will be contradicted.
+    public float maxRotation = 25;             
+    public float minRotation = -25;            // Minimum rotation needs to be negative or the swing will be contradicted.
 
     void Start()
     {
