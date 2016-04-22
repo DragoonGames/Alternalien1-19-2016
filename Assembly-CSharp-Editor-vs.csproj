@@ -70,7 +70,7 @@
      <None Include="Assets\Tiled2Unity\Imported\Heatstroke_Plaza.tiled2unity.xml" />
      <None Include="Assets\Tiled2Unity\License.txt" />
  <Reference Include="Assembly-UnityScript">
- <HintPath>C:/Users/EhlersI.AD/Documents/GitHub/Alternalien1-19-2016/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
+ <HintPath>C:/Users/student/Documents/GitHub/Alternalien1-19-2016/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
