@@ -199,7 +199,8 @@ public class SandyMovement : MonoBehaviour {
     {
         if (other.gameObject.tag == "UpWind")         //This signals that we are on a wind vortex
         {
-            myRigid.AddForce(Vector2.up * maxSpeed * Time.deltaTime * (transform.localScale.x / 2));
+            print("In Up Wind");
+            myRigid.AddForce(Vector2.up * maxSpeed * (transform.localScale.x / 2));
             myRigid.gravityScale = 0;
             /*if (other.gameObject.GetComponent<CapsuleDirection>().vertical)
             {
