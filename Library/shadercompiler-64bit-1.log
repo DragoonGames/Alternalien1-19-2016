@@ -1,7 +1,17 @@
 Base path: C:/Program Files/Unity/Editor/Data
-<<<<<<< HEAD
-Pipe name: \\.\pipe\UnityShaderCompiler-64bit-1-1640
-=======
-Pipe name: \\.\pipe\UnityShaderCompiler-64bit-1-2224
->>>>>>> refs/remotes/origin/FixingAnimations
+Pipe name: \\.\pipe\UnityShaderCompiler-64bit-1-6740
 Cmd: getPlatforms
+Cmd: preprocess
+  insize=2850 outsize=847 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=6731 outsize=3663 kw=DIRECTIONAL LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=6731 outsize=1314 kw=DIRECTIONAL LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=3569 outsize=2753 kw=DIRECTIONAL ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=3569 outsize=1168 kw=DIRECTIONAL ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=1089 outsize=1314 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=1089 outsize=1006 kw= ok=1

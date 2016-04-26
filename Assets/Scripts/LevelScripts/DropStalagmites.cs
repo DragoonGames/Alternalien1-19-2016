@@ -23,11 +23,11 @@ public class DropStalagmites : MonoBehaviour {
 	}
     void OnTriggerEnter2D(Collider2D other)
     {
-        print("Tag is: " + other.gameObject.tag + " GameObject is " + other.gameObject.name);
-        print(exemptTags.Contains(other.gameObject.tag));
+        //print("Tag is: " + other.gameObject.tag + " GameObject is " + other.gameObject.name);
+        //print(exemptTags.Contains(other.gameObject.tag));
         if (!exemptTags.Contains(other.gameObject.tag))
         {
-            print(exemptTags.Contains(other.gameObject.tag));
+            //print(exemptTags.Contains(other.gameObject.tag));
             if (isTrigger)
             {
                 if (objectToDrop != null)
@@ -72,7 +72,7 @@ public class DropStalagmites : MonoBehaviour {
         {
             if (objectToDestroy == null)
             {
-                print("Drop on Destroy");
+                //print("Drop on Destroy");
                 Rigidbody2D objectRigidbody = objectToDrop.AddComponent<Rigidbody2D>();
                 objectRigidbody.mass = 5;
                 objectRigidbody.gravityScale = 5;
