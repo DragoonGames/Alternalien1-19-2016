@@ -56,12 +56,6 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -70,7 +64,6 @@
     <Compile Include="Assets\Elevator\Elevator.cs" />
     <Compile Include="Assets\Elevator\ElevatorTrigger.cs" />
     <Compile Include="Assets\GUISkin\GUISample.cs" />
-    <Compile Include="Assets\RightDrawBridge.cs" />
     <Compile Include="Assets\Scripts\Characters\Clone\CloneMovement.cs" />
     <Compile Include="Assets\Scripts\Characters\Cloud\AddCloud.cs" />
     <Compile Include="Assets\Scripts\Characters\Cloud\CloudHit.cs" />
@@ -117,6 +110,7 @@
     <Compile Include="Assets\Scripts\LevelScripts\DrawBridgeSwing.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\DrawLine.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\DropStalagmites.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\EndingGame.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\ExitIntroScene.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\FallingBoulders.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\GeyserBridgeBuilding.cs" />
@@ -124,6 +118,7 @@
     <Compile Include="Assets\Scripts\LevelScripts\LockNextMirror.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\PistonDrops.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\ResetMirrors.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\RightDrawBridge.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\TeeterTotter.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\TestLightBeam.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\TextBoxVisibility.cs" />
