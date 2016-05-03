@@ -17,10 +17,13 @@ public class LennyMovement : MonoBehaviour {
     float jumpRate = 0.25F;
     float nextJump = 0.75F;
     public Animator anim;
+
     //Variables for powers
     public GameObject[] itemTransform; //All objects to collect including players
     public GameObject[] playerObjects;  //Gather player tags
     public GameObject[] taggedObjects;  //Gather all tags for Lenny
+    public GameObject[] tagMirrors;     //Gather mirrors for Lenny
+
     int[] itemTransformScalesX;
     int[] itemTransformScalesY;
 
@@ -39,22 +42,46 @@ public class LennyMovement : MonoBehaviour {
         anim.SetBool("isGrounded", isGrounded);
         anim.SetBool("isFacingRight", isFacingRight);
         anim.SetBool("isUsingPower", isUsingPower);
+
         myAudioSource = GetComponent<AudioSource>();
         myRigid = GetComponent<Rigidbody2D>();
+
         inRange = 50.0f;
         triggered = false;
+
         taggedObjects = GameObject.FindGameObjectsWithTag("Lenny");
         playerObjects = GameObject.FindGameObjectsWithTag("Player");
-        int taggedCount = taggedObjects.Length + playerObjects.Length - 1;
+        tagMirrors = GameObject.FindGameObjectsWithTag("LenMirror");
+
+        //print("Tagged objects length: " + taggedObjects.Length);
+        //print("Tagged mirrors length: " + tagMirrors.Length);
+
+        int taggedCount = taggedObjects.Length + playerObjects.Length  + tagMirrors.Length - 1;
+
         itemTransform = new GameObject[taggedCount];
-        for (int j  = 0; j < taggedObjects.Length; j++)
-        {
-            itemTransform[j] = taggedObjects[j];
+        //print(taggedCount);
+        
+        if(taggedObjects.Length != 0)
+            {
+            for (int j = 0; j < taggedObjects.Length; j++)
+            {
+                itemTransform[j] = taggedObjects[j];
+            }
         }
         for (int k = 0; k < 1; k++)
         {
             itemTransform[k + taggedObjects.Length] = GameObject.Find("Clone");
             itemTransform[k + 1 + taggedObjects.Length] = GameObject.Find("Sandy");
+        }
+        if (tagMirrors.Length != 0)
+        {
+            for (int l = 0; l < 1; l++)
+            {
+                //print(taggedObjects.Length + playerObjects.Length - 1);
+                itemTransform[l + taggedObjects.Length + playerObjects.Length] = tagMirrors[0];
+                itemTransform[l - 1 + taggedObjects.Length + playerObjects.Length] = tagMirrors[1];
+                
+            }
         }
         gravityScale = myRigid.gravityScale;
     }
@@ -112,10 +139,20 @@ public class LennyMovement : MonoBehaviour {
             anim.SetFloat("speed", speed);
 
             GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
-			if(triggered)
+
+            /*if (itemTransform[index].gameObject.tag == "TagMirror")
+            {
+                if (!itemTransform[index].GetComponent<setMirrorRotation>().flipped)      //Properly placed mirrors
+                {
+                    print(itemTransform[index].gameObject.name);
+                    itemTransform[index].GetComponent<setMirrorRotation>().flipped = true;
+                }
+            }*/
+
+            if (triggered)
 			{
-				itemTransform[index].GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
-			}
+                itemTransform[index].GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
+            }
             if (isVine)
             {
                 float vertical = Input.GetAxis("Vertical");
@@ -132,11 +169,11 @@ public class LennyMovement : MonoBehaviour {
             CheckDirection(speed);
             if (!released && Input.GetKeyDown(KeyCode.C))
             {
+                print("C Pressed");
                 Released();
             }
             for (int i = 0; i < itemTransform.Length; i++)
             {
-                
                 if (Vector3.Distance(itemTransform[i].transform.position, transform.position) < inRange)
                 {
                     if (!triggered && Input.GetKeyDown(KeyCode.F))
@@ -144,15 +181,23 @@ public class LennyMovement : MonoBehaviour {
                         index = i;
                         Trigger();
                     }
+                    if (Input.GetKeyDown(KeyCode.F) && itemTransform[i].gameObject.tag == "LenMirror")
+                    {
+                        if (!itemTransform[index].GetComponent<setMirrorRotation>().flipped)      //Properly placed mirrors
+                        {
+                            itemTransform[i].GetComponent<setMirrorRotation>().flipped = true;
+                            triggered = false;
+                            released = true;
+                        }
+                    }
                 }
             }
-            //MoveChild();
-            if (Input.GetKey(KeyCode.UpArrow) && triggered)
+            if (Input.GetKey(KeyCode.UpArrow) && triggered && itemTransform[index].gameObject.tag != "LenMirror")
             {
                 itemTransform[index].transform.Translate(0f, 1f, 0f);
             }
-			if (Input.GetKey(KeyCode.DownArrow) && triggered)
-			{
+			if (Input.GetKey(KeyCode.DownArrow) && triggered && itemTransform[index].gameObject.tag != "LenMirror")
+            {
 				itemTransform[index].transform.Translate(0f, -1f, 0f);
 			}
         }
@@ -163,22 +208,24 @@ public class LennyMovement : MonoBehaviour {
         released = false;
 
         anim.SetBool("isUsingPower", isUsingPower);
-        itemTransform[index].transform.parent = transform;
 
-        print(transform.localPosition);
-        print(itemTransform[index].transform.localScale);
+        if (itemTransform[index].gameObject.tag != "LenMirror")
+        {
+            itemTransform[index].transform.parent = transform;
 
-        Rigidbody2D itemRigid = itemTransform[index].GetComponent<Rigidbody2D>();
-        itemRigid.constraints = RigidbodyConstraints2D.FreezeRotation;
+            Rigidbody2D itemRigid = itemTransform[index].GetComponent<Rigidbody2D>();
+
+            itemRigid.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
     }
     void Released() 
     {
         triggered = false;
         released = true;
 
-        if (isFacingLeft)
+        anim.SetBool("isUsingPower", isUsingPower);
+        if(itemTransform[index].gameObject.tag != "LenMirror")
         {
-            anim.SetBool("isUsingPower", isUsingPower);
             itemTransform[index].transform.parent = null;
         }
     }
@@ -189,6 +236,7 @@ public class LennyMovement : MonoBehaviour {
             myAudioSource.Stop();
             myAudioSource.clip = keycardPickup;
             myAudioSource.Play();
+
             Destroy(c.gameObject);
             if (GameObject.Find("Sand_Bridge"))
             {
@@ -196,6 +244,7 @@ public class LennyMovement : MonoBehaviour {
             }
         }
     }
+
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
      *                                                                               *
      *   This requires the character to hit the trigger that has to have a tag of    *
@@ -205,16 +254,13 @@ public class LennyMovement : MonoBehaviour {
      *   would be completely useless.                                                *
      *                                                                               *
      * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
     void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.tag == "UpWind")         //This signals that we are on a wind vortex
         {
             myRigid.AddForce(Vector2.up * maxSpeed * Time.deltaTime * (transform.localScale.x / 2));
             myRigid.gravityScale = 0;
-            /*if (other.gameObject.GetComponent<CapsuleDirection>().vertical)
-            {
-                myRigid.AddForce(Vector2.up * maxSpeed * Time.deltaTime * (transform.localScale.x / 2));
-            }*/
         }
         else if (other.gameObject.tag == "LeftWind")
         {
@@ -253,7 +299,7 @@ public class LennyMovement : MonoBehaviour {
     {
         isActive = false;
     }
-    void MoveChild()
+    /*void MoveChild()
     {
         if (triggered) //Child attached to parent
         {
@@ -265,5 +311,5 @@ public class LennyMovement : MonoBehaviour {
             itemMass.gravityScale = 0;
             itemTransform[index].transform.Translate(0, 2, 0);
         }
-    }
+    }*/
 }

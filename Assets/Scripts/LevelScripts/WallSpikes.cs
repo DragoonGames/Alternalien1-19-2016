@@ -65,7 +65,6 @@ public class WallSpikes : MonoBehaviour {
         }
         if (other.gameObject.tag == "Respawn")          //Relocate the Spikes
         {
-            print("Hit Spikes");
             // If spike is past the max point/ wall
             transform.position = originalPos;   // Reset position.
             Destroy(myRigid);
