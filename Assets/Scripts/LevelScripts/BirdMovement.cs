@@ -25,7 +25,6 @@ public class BirdMovement : MonoBehaviour
         isFacingLeft = true;
         if (!GetComponent<Rigidbody2D>())
         {
-            print("No Rigidbody");
             myRigid = this.gameObject.AddComponent<Rigidbody2D>();
             myRigid.mass = 0;
             myRigid.gravityScale = 0;
@@ -46,7 +45,6 @@ public class BirdMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		print (transform.position.x);
         /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
          *                                                                                                       *
          *  This doesn't work because the values must be set in the script, so they can only have one speed for  *
@@ -76,13 +74,11 @@ public class BirdMovement : MonoBehaviour
                 */
 		if (bird.transform.position.x <= xMinClamp)             //Change direction
 		{
-			print ("Move Right");
 			isFacingLeft = false;
 		}
 		if (bird.transform.position.x >= xMaxClamp)
 		{
 
-			print ("Move Left");
 			isFacingLeft = true;
 		}
 

@@ -41,7 +41,7 @@ public class LennyMovement : MonoBehaviour {
         anim.SetBool("isUsingPower", isUsingPower);
         myAudioSource = GetComponent<AudioSource>();
         myRigid = GetComponent<Rigidbody2D>();
-        inRange = 50.0f;
+        inRange = 100.0f;
         triggered = false;
         taggedObjects = GameObject.FindGameObjectsWithTag("Lenny");
         playerObjects = GameObject.FindGameObjectsWithTag("Player");
