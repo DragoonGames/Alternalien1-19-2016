@@ -12,8 +12,7 @@ public class mummyMovement : MonoBehaviour {
     public float xTrackSmooth = 10.0f;
     bool attack;
 
-    bool Attack
-    {
+    bool Attack {
         get { return attack; }
         set { attack = value; }
     }
@@ -30,6 +29,7 @@ public class mummyMovement : MonoBehaviour {
         {
             print("No Rigidbody");
             myRigid = this.gameObject.AddComponent<Rigidbody2D>();
+
         }
         else
         {
