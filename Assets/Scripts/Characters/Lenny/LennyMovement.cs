@@ -53,8 +53,7 @@ public class LennyMovement : MonoBehaviour {
         }
         for (int k = 0; k < 1; k++)
         {
-            itemTransform[k + taggedObjects.Length] = GameObject.Find("Clone");
-            itemTransform[k + 1 + taggedObjects.Length] = GameObject.Find("Sandy");
+            itemTransform[k + taggedObjects.Length] = GameObject.Find("Sandy");
         }
         gravityScale = myRigid.gravityScale;
     }
@@ -130,7 +129,7 @@ public class LennyMovement : MonoBehaviour {
                 StartCoroutine(Jump());
             }
             CheckDirection(speed);
-            if (!released && Input.GetKeyDown(KeyCode.C))
+            if (Input.GetKeyDown(KeyCode.C))
             {
                 Released();
             }
@@ -176,11 +175,8 @@ public class LennyMovement : MonoBehaviour {
         triggered = false;
         released = true;
 
-        if (isFacingLeft)
-        {
-            anim.SetBool("isUsingPower", isUsingPower);
-            itemTransform[index].transform.parent = null;
-        }
+        anim.SetBool("isUsingPower", isUsingPower);
+        itemTransform[index].transform.parent = null;
     }
     void OnCollisionEnter2D(Collision2D c)
     {
@@ -221,7 +217,7 @@ public class LennyMovement : MonoBehaviour {
             myRigid.AddForce(Vector2.left * maxSpeed * transform.localScale.y);
             if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                myRigid.constraints = RigidbodyConstraints2D.None;
+                myRigid.constraints = RigidbodyConstraints2D.FreezeRotation;
             }
             if (myRigid.gravityScale == 0)
             {
