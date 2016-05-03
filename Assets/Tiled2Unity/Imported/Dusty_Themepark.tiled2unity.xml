@@ -1,7 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
+<<<<<<< HEAD
 <!--Last exported: 5/3/2016 7:02:43 AM-->
+=======
+<!--Last exported: 5/3/2016 9:29:47 AM-->
+>>>>>>> origin/master
 <Tiled2Unity version="0.9.13.0">
   <AssignMaterial mesh="mesh_[00]_[04]" material="TombWindow" sortingLayerName="" sortingOrder="0" />
   <AssignMaterial mesh="mesh_[00]_[01]" material="bkg_desert_tileset" sortingLayerName="" sortingOrder="0" />
