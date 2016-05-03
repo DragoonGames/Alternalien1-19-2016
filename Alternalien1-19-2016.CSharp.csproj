@@ -106,11 +106,11 @@
     <Compile Include="Assets\Scripts\LevelScripts\DeathScript.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\DesertDrawBridge.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\DesertDrawBridge2.cs" />
-    <Compile Include="Assets\Scripts\LevelScripts\DestroyBoss.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\DestroyStalagmite.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\DrawBridgeSwing.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\DrawLine.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\DropStalagmites.cs" />
+    <Compile Include="Assets\Scripts\LevelScripts\EndingGame.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\ExitIntroScene.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\FallingBoulders.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\GeyserBridgeBuilding.cs" />
@@ -126,7 +126,6 @@
     <Compile Include="Assets\Scripts\LevelScripts\bioClick.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\bossScript.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\mummyMovement.cs" />
-    <Compile Include="Assets\Scripts\LevelScripts\setMirrorRotation.cs" />
     <Compile Include="Assets\Scripts\LevelScripts\unfairMarioSpikes.cs" />
     <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\SortingLayerExposed.cs" />
     <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\TileAnimator.cs" />
