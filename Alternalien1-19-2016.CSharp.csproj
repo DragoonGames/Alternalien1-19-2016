@@ -70,6 +70,7 @@
     <Compile Include="Assets\Elevator\Elevator.cs" />
     <Compile Include="Assets\Elevator\ElevatorTrigger.cs" />
     <Compile Include="Assets\GUISkin\GUISample.cs" />
+    <Compile Include="Assets\RightDrawBridge.cs" />
     <Compile Include="Assets\Scripts\Characters\Clone\CloneMovement.cs" />
     <Compile Include="Assets\Scripts\Characters\Cloud\AddCloud.cs" />
     <Compile Include="Assets\Scripts\Characters\Cloud\CloudHit.cs" />
