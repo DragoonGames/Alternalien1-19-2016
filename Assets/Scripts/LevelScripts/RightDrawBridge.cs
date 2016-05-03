@@ -12,7 +12,7 @@ public class RightDrawBridge : MonoBehaviour
 		//DbRotation += 89.5f;
 		transform.rotation = Quaternion.Euler(transform.localEulerAngles.x, transform.localEulerAngles.y, DbRotation);
 		accessCards = GameObject.FindGameObjectsWithTag ("isCardKey");
-		count = 0;
+		count = 4;
 		swingDown = false;
 	}
 	
